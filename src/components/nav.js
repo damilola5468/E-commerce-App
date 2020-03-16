@@ -43,7 +43,7 @@ class Navigator extends Component {
         >
           <Link to="/" style={{ textDecoration: "none" }}>
             {/* <Navbar.Brand href="#home" style={all} className="text-dark "> */}
-            <Nav className="ml-5">
+            <Nav className="ml-3 mt-2">
               {/* <FaCannabis /> */}
               <h1
                 class="link mt-1"
@@ -53,7 +53,7 @@ class Navigator extends Component {
                   textDecoration: "none"
                 }}
               >
-                <b style={{ fontSize: "29px" }}>DaVinci's</b>
+                <b style={{ fontSize: "29px" }}>Switch's</b>
               </h1>
             </Nav>
             {/* </Navbar.Brand> */}
@@ -76,7 +76,7 @@ class Navigator extends Component {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto"></Nav>
 
-            <Nav className="ml-5">
+            <Nav className="ml-0">
               <Nav.Link
                 eventKey={2}
                 href="/market"

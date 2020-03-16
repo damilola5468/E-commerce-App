@@ -149,48 +149,49 @@ export default class Checkout extends React.Component {
               </div>
             ))}
           </div>
-
-          {products.length ? (
-            <div>
-              <h4 style={rt}>
-                <b>Total Amount:</b>
-                <span className="float-right text-dark">
-                  <b>₦{total}</b>
-                </span>
-              </h4>
-              <hr />
-            </div>
-          ) : (
-            ""
-          )}
-          {!products.length ? (
-            <h3 className="text-dark">
-              <b>No item to Checkout</b>
-            </h3>
-          ) : (
-            ""
-          )}
-          {products.length ? (
-            <button
-              className="btn btn-sm btn-outline-secondary float-right"
-              onClick={() => swal("Proceed to Pay")}
-            >
-              Pay
-            </button>
-          ) : (
-            ""
-          )}
-          <Link to="/">
-            <button
-              className="btn btn-outline-secondary btn-sm float-right"
-              style={{ marginRight: "10px" }}
-            >
-              Cancel
-            </button>
-          </Link>
-          <br />
-          <br />
-          <br />
+          <div class="container">
+            {products.length ? (
+              <div>
+                <h4 style={rt}>
+                  <b>Total Amount:</b>
+                  <span className="float-right text-dark">
+                    <b>₦{total}</b>
+                  </span>
+                </h4>
+                <hr />
+              </div>
+            ) : (
+              ""
+            )}
+            {!products.length ? (
+              <h3 className="text-dark">
+                <b>No item to Checkout</b>
+              </h3>
+            ) : (
+              ""
+            )}
+            {products.length ? (
+              <button
+                className="btn btn-sm btn-outline-secondary float-right"
+                onClick={() => swal("Proceed to Pay")}
+              >
+                Pay
+              </button>
+            ) : (
+              ""
+            )}
+            <Link to="/">
+              <button
+                className="btn btn-outline-secondary btn-sm float-right"
+                style={{ marginRight: "10px" }}
+              >
+                Cancel
+              </button>
+            </Link>
+            <br />
+            <br />
+            <br />
+          </div>
         </div>
       </div>
     );

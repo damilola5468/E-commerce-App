@@ -85,53 +85,58 @@ export default class Cart extends React.Component {
         <div class="container mt-5 ">
           <div class="row" id="products">
             {products.map((product, index) => (
-              <CartItem
-                product={product}
-                remove={this.removeFromCart}
-                key={index}
-              />
+              <div class="container">
+                <CartItem
+                  product={product}
+                  remove={this.removeFromCart}
+                  key={index}
+                />
+              </div>
             ))}
           </div>
-          {products.length ? (
-            <div>
-              <h5 class="text-dark" style={{ fontSize: "20px" }}>
-                <b>Total Amount:</b>
-                <span
-                  className="float-right text-dark"
-                  style={{ fontSize: "21px" }}
-                >
-                  <b> ₦{total}</b>
-                </span>
-              </h5>
-              <hr />
-            </div>
-          ) : (
-            ""
-          )}
 
-          {!products.length ? (
-            <h3 className="text-dark">
-              <b>No item on the cart!!!</b>
-            </h3>
-          ) : (
-            ""
-          )}
-          <Link to="/checkout">
-            <button className="btn btn-sm btn-outline-secondary float-right">
-              Checkout
+          <div class="container">
+            {products.length ? (
+              <div>
+                <h5 class="text-dark" style={{ fontSize: "20px" }}>
+                  <b>Total Amount:</b>
+                  <span
+                    className="float-right text-dark"
+                    style={{ fontSize: "21px" }}
+                  >
+                    <b> ₦{total}</b>
+                  </span>
+                </h5>
+                <hr />
+              </div>
+            ) : (
+              ""
+            )}
+
+            {!products.length ? (
+              <h3 className="text-dark">
+                <b>No item on the cart!!!</b>
+              </h3>
+            ) : (
+              ""
+            )}
+            <Link to="/checkout">
+              <button className="btn btn-sm btn-outline-secondary float-right">
+                Checkout
+              </button>
+            </Link>
+            <button
+              className="btn btn-outline-secondary btn-sm float-left"
+              onClick={this.clearCart}
+              style={{ marginRight: "10px" }}
+            >
+              Clear Cart
             </button>
-          </Link>
-          <button
-            className="btn btn-outline-secondary btn-sm float-left"
-            onClick={this.clearCart}
-            style={{ marginRight: "10px" }}
-          >
-            Clear Cart
-          </button>
-          <br />
+            <br />
 
-          <br />
-          <br />
+            <br />
+            <br />
+          </div>
         </div>
       </div>
     );
