@@ -1,84 +1,39 @@
 import React, { Component } from "react";
 import Login from "./components/Login";
+import Sigup from "./components/signup";
 import Products from "./components/ProductList";
 import Cart from "./components/Cart";
 import "./css/app.css";
 import Checkout from "./components/Checkout";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import { isAuthenticated } from "./repository";
+import Navigator from "./components/nav";
+import Index from "./components/index";
+import Footer from "./components/footer";
 
 class App extends Component {
-  logOut() {
-    localStorage.removeItem("x-access-token");
-  }
-
   render() {
     const auth = isAuthenticated();
     return (
       <Router>
-        <div>
-          <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div className="container">
-              <Link className="navbar-brand" to="/">
-                Max Store
-              </Link>
-              <button
-                className="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span className="navbar-toggler-icon"></span>
-              </button>
-              <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div className="navbar-nav">
-                  <Link className="nav-item nav-link" to="/">
-                    Products
-                  </Link>
-                  <Link className="nav-item nav-link" to="/cart">
-                    Cart&nbsp;
-                    <span class="badge badge-primary">
-                      {React.Children.count(localStorage.getItem("cart"))}
-                    </span>
-                  </Link>
-                  {auth ? (
-                    <Link className="nav-item nav-link" to="/checkout">
-                      Checkout
-                    </Link>
-                  ) : (
-                    ""
-                  )}
-                  {auth ? (
-                    <a
-                      className="nav-item nav-link"
-                      href="/"
-                      onClick={this.logOut}
-                    >
-                      Log out
-                    </a>
-                  ) : (
-                    <Link className="nav-item nav-link float-right" to="/login">
-                      Log in
-                    </Link>
-                  )}
-                </div>
-              </div>
-            </div>
-          </nav>
-          <div className="container">
-            <br />
-            <Route exact path="/" component={Products} />
-            <Route exact path="/cart" component={Cart} />
-            <Route exact path="/checkout" component={Checkout} />
-            {!auth ? <Route exact path="/login" component={Login} /> : ""}
-          </div>
+        <div class="App">
+          <Navigator />
+
+          <Route exact path="/" component={Index} />
+          <Route exact path="/market" component={Products} />
+          <Route exact path="/cart" component={Cart} />
+          <Route exact path="/checkout" component={Checkout} />
+          <Route exact path="/signup" component={Sigup} />
+          {/* <Route exact path="/admin" component={Admin} /> */}
+          {!auth ? (
+            <Route exact path="/login" component={Login} />
+          ) : (
+            this.logOut
+          )}
+          <Footer />
         </div>
       </Router>
     );
   }
 }
-
 export default App;

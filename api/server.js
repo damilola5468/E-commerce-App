@@ -31,6 +31,22 @@ app.post("/api/products", (req, res) => {
   return res.json(products);
 });
 
+app.get("/api/category:id", (req, res) => {
+  let product = [],
+    id = null;
+  let request = JSON.parse(req.params.id);
+  if (!request) return res.json(product);
+
+  for (var i = 0; i < data.products.category.length; i++) {
+    id = data.products[i].id.toString();
+    if (request.hasOwnProperty(id)) {
+      data.category[i].qty = request[id];
+      product.push(data.products[i]);
+    }
+  }
+  return res.json(product);
+});
+
 app.post("/api/auth", (req, res) => {
   let user = data.users.filter(user => {
     return user.name === req.body.name && user.password === req.body.password;

@@ -2,7 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { getCartProducts } from "../repository";
 import CartItem from "./CartItem";
+import "bootstrap/dist/css/bootstrap.min.css";
 import swal from "sweetalert";
+import {
+  FaCartArrowDown,
+  FaUserPlus,
+  FaBars,
+  FaCheckSquare,
+  FaStore,
+  FaSeedling,
+  FaSearch,
+  FaLock
+} from "react-icons/fa";
 export default class Cart extends React.Component {
   constructor(props) {
     super(props);
@@ -50,7 +61,7 @@ export default class Cart extends React.Component {
           break;
 
         default:
-          swal("Your Product is safe!!", "", "success");
+          swal("Your Products Are Safe!!", "", "success");
           break;
       }
     });
@@ -65,52 +76,73 @@ export default class Cart extends React.Component {
   render() {
     const { products, total } = this.state;
     return (
-      <div className=" container">
-        <h3 className="card-title">
-          <b>Cart</b>
-        </h3>
-        <hr />
-        {products.map((product, index) => (
-          <CartItem
-            product={product}
-            remove={this.removeFromCart}
-            key={index}
-          />
-        ))}
-        <hr />
-        {products.length ? (
-          <div>
-            <h4>
-              <small>Total Amount:</small>
-              <span className="float-right text-dark">₦{total}</span>
-            </h4>
-            <hr />
+      <div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <div style={nav}></div>
+        <div class="container mt-5 ">
+          <div class="row" id="products">
+            {products.map((product, index) => (
+              <CartItem
+                product={product}
+                remove={this.removeFromCart}
+                key={index}
+              />
+            ))}
           </div>
-        ) : (
-          ""
-        )}
+          {products.length ? (
+            <div>
+              <h5 class="text-dark" style={{ fontSize: "20px" }}>
+                <b>Total Amount:</b>
+                <span
+                  className="float-right text-dark"
+                  style={{ fontSize: "21px" }}
+                >
+                  <b> ₦{total}</b>
+                </span>
+              </h5>
+              <hr />
+            </div>
+          ) : (
+            ""
+          )}
 
-        {!products.length ? (
-          <h3 className="text-dark">No item on the cart!!!</h3>
-        ) : (
-          ""
-        )}
-        <Link to="/checkout">
-          <button className="btn btn-sm btn-success float-right">
-            Checkout
+          {!products.length ? (
+            <h3 className="text-dark">
+              <b>No item on the cart!!!</b>
+            </h3>
+          ) : (
+            ""
+          )}
+          <Link to="/checkout">
+            <button className="btn btn-sm btn-outline-secondary float-right">
+              Checkout
+            </button>
+          </Link>
+          <button
+            className="btn btn-outline-secondary btn-sm float-left"
+            onClick={this.clearCart}
+            style={{ marginRight: "10px" }}
+          >
+            Clear Cart
           </button>
-        </Link>
-        <button
-          className="btn btn-danger btn-sm float-left"
-          onClick={this.clearCart}
-          style={{ marginRight: "10px" }}
-        >
-          Clear Cart
-        </button>
-        <br />
-        <br />
-        <br />
+          <br />
+
+          <br />
+          <br />
+        </div>
       </div>
     );
   }
 }
+
+var nav = {
+  backgroundColor: "#f7f7fde0",
+  width: "100%",
+  height: "65px"
+};
+var lp = {
+  fontSize: "21px"
+};

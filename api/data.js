@@ -1,45 +1,46 @@
 const products = [
   {
-    id: 01,
+    id: 1,
     name: "Bags of Rice",
+    category: "grains",
     available_quantity: 5,
     price: 45000,
     description:
-      "Lorem ipsum dolor sit amet, iusto appellantur vix te, nam affert feugait menandri eu."
+      "This is the Description of the Above Item, confirm Your Order Before Checkout."
   },
-
   {
-    id: 02,
+    id: 2,
     name: "Bag of Beans",
+    category: "grains",
     available_quantity: 7,
     price: 50000,
     description:
-      "Lorem ipsum dolor sit amet, iusto appellantur vix te, nam affert feugait menandri eu. "
+      "This is the Description of the Above Item, confirm Your Order Before Checkout. "
   },
-
   {
-    id: 03,
+    id: 3,
     name: "Bliss Groundnut Oil",
-    available_quantity: 1,
+    category: "beverage",
+    available_quantity: 0,
     price: 5000,
     description:
-      "Lorem ipsum dolor sit amet, iusto appellantur vix te, nam affert feugait menandri eu. "
+      "This is the Description of the Above Item, confirm Your Order Before Checkout."
   },
-
   {
-    id: 04,
-    name: "Original Honey",
-    available_quantity: 4,
-    price: 1500,
+    id: 4,
+    name: "Coco Tea",
+    category: "beverage",
+    available_quantity: 3,
+    price: 5000,
     description:
-      "Lorem ipsum dolor sit amet, iusto appellantur vix te, nam affert feugait menandri eu. Magna simul ad est."
+      "This is the Description of the Above Item, confirm Your Order Before Checkout."
   }
 ];
 
 const users = [
   {
     name: "user",
-    password: "qwerty"
+    password: "user"
   },
   {
     name: "example",
@@ -47,4 +48,31 @@ const users = [
   }
 ];
 
-module.exports = { products: products, users: users };
+const category = [
+  {
+    id: 1,
+    name: "fruits"
+  },
+  {
+    id: 2,
+    name: "vegetables"
+  },
+  {
+    id: 3,
+    name: "cereals"
+  },
+  {
+    id: 4,
+    name: "grains"
+  },
+  {
+    id: 5,
+    name: "Beverages"
+  },
+  {
+    id: 6,
+    name: "services"
+  }
+];
+
+module.exports = { products: products, users: users, category: category };

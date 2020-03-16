@@ -1,10 +1,22 @@
 import React from "react";
 import { login } from "../repository";
-
+import swal from "sweetalert";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { FaSignInAlt, FaLock, FaKey } from "react-icons/fa";
+import {
+  Card,
+  Accordion,
+  useAccordionToggle,
+  Navbar,
+  Nav,
+  Form,
+  InputGroup,
+  Col
+} from "react-bootstrap/";
 export default class Login extends React.Component {
   constructor() {
     super();
-    this.state = { name: "", password: "" };
+    this.state = { email: "", password: "" };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.submitLogin = this.submitLogin.bind(this);
   }
@@ -16,41 +28,73 @@ export default class Login extends React.Component {
   submitLogin(event) {
     event.preventDefault();
     login(this.state)
-      .then(token => (window.location = "/"))
-      .catch(err => alert(err));
+      .then(token => (window.location = "/market"))
+      .catch(err => swal(err, "Error Occured", "error"));
   }
 
   render() {
     return (
-      <div className="container">
-        <hr />
-        <div className="col-sm-8 col-sm-offset-2">
-          <div className="panel panel-primary">
-            <div className="panel-heading"></div>
-            <div className="panel-body">
-              <form onSubmit={this.submitLogin}>
-                <div className="form-group">
-                  <label>Name:</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="name"
-                    onChange={this.handleInputChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Password:</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    name="password"
-                    onChange={this.handleInputChange}
-                  />
-                </div>
-                <button type="submit" className="btn btn-sm btn-success">
-                  Submit
-                </button>
-              </form>
+      <div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <div style={nav}></div>
+        <div className="container mt-5 mb-5">
+          <h5 style={mn} className="ml-4">
+            Login &nbsp; <FaLock />
+          </h5>
+          <hr />
+          <div className="col-sm-8 col-sm-offset-2">
+            <div className="panel panel-primary">
+              <div className="panel-heading"></div>
+              <div className="panel-body">
+                <form onSubmit={this.submitLogin}>
+                  <div class="col-md-8">
+                    <div className="form-group">
+                      <label>
+                        <h5>Email:</h5>
+                      </label>
+
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="email"
+                        onChange={this.handleInputChange}
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-md-8">
+                    {" "}
+                    <div className="form-group">
+                      <label>
+                        <h5>Password:</h5>
+                      </label>
+                      <input
+                        type="password"
+                        className="form-control"
+                        name="password"
+                        onChange={this.handleInputChange}
+                      />
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="btn btn-sm btn-outline-secondary ml-3"
+                  >
+                    Login
+                  </button>
+
+                  <a
+                    href="/signup"
+                    class="btn mt-3 ml-4 btn-sm btn-outline-secondary"
+                  >
+                    Signup
+                  </a>
+                </form>
+              </div>
             </div>
           </div>
         </div>
@@ -58,3 +102,13 @@ export default class Login extends React.Component {
     );
   }
 }
+var mn = {
+  fontSize: "20px",
+  marginLeft: "20px"
+};
+
+var nav = {
+  backgroundColor: "#fdfdfe",
+  width: "100%",
+  height: "65px"
+};
