@@ -196,7 +196,8 @@ var col = {
 var er = {};
 
 var nav = {
-  backgroundColor: "#f7f7fde0"
+  backgroundColor: "#f7f7fde0",
+  height: "20px"
 };
 var img = {
   width: "180px"

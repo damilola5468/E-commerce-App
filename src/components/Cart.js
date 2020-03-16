@@ -85,13 +85,11 @@ export default class Cart extends React.Component {
         <div class="container mt-5 ">
           <div class="row" id="products">
             {products.map((product, index) => (
-              <div class="container">
-                <CartItem
-                  product={product}
-                  remove={this.removeFromCart}
-                  key={index}
-                />
-              </div>
+              <CartItem
+                product={product}
+                remove={this.removeFromCart}
+                key={index}
+              />
             ))}
           </div>
 
