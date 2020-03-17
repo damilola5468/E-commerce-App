@@ -89,10 +89,10 @@ export default class Carosel extends Component {
             />
           </Carousel.Item> */}
         </Carousel>
-        {/* <div style={nav}></div> */}
+        <div style={nav}></div>
         <div
           className="mt-0 mb-5 p-0"
-          style={{ backgroundColor: "", width: "100%" }}
+          style={{ backgroundColor: "", width: "50%" }}
         >
           {/* <h2 class="text-center">
             <b style={{ fontSize: "29px" }}>New Sale!!!</b>
@@ -275,7 +275,7 @@ export default class Carosel extends Component {
                       <img
                         src={pro3}
                         alt="fjf"
-                        style={{ width: "100%", height: "100%" }}
+                        style={{ width: "100%", height: "90%" }}
                       />
                     </Carousel.Item>
                     {/* <Carousel.Item>
@@ -365,13 +365,13 @@ export default class Carosel extends Component {
   }
 }
 var img = {
-  width: "200px",
-  height: "200px",
+  width: "50px",
+  height: "50px",
   marginTop: "9px",
   borderRadius: "5px"
 };
 var nav = {
-  backgroundColor: "#fdfdfe",
+  backgroundColor: "#f7f7fde0",
   width: "100%",
-  height: "20px"
+  height: "50px"
 };

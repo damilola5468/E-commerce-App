@@ -65,7 +65,7 @@ export default class Login extends React.Component {
         <br />
         <br />
         <div style={nav}></div>
-        <div className="container mt-5 mb-5">
+        <div className="container mt-4 mb-5">
           <h5 style={mn} className="ml-4">
             Signup &nbsp; <FaLock />
           </h5>
@@ -178,13 +178,13 @@ export default class Login extends React.Component {
                     type="submit"
                     className="btn btn-sm btn-outline-secondary"
                   >
-                    Signup
+                    <b>Signup</b>
                   </button>
                   <a
                     href="/login"
                     class="btn mt-3 ml-4 btn-sm btn-outline-secondary"
                   >
-                    Login
+                    <b> Login</b>
                   </a>
                 </form>
               </div>
@@ -200,7 +200,7 @@ var mn = {
 };
 
 var nav = {
-  backgroundColor: "#fdfdfe",
+  backgroundColor: "#f7f7fde0",
   width: "100%",
-  height: "65px"
+  height: "15px"
 };

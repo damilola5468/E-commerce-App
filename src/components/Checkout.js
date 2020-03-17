@@ -175,7 +175,7 @@ export default class Checkout extends React.Component {
                 className="btn btn-sm btn-outline-secondary float-right"
                 onClick={() => swal("Proceed to Pay")}
               >
-                Pay
+                <b>Pay</b>
               </button>
             ) : (
               ""
@@ -185,7 +185,7 @@ export default class Checkout extends React.Component {
                 className="btn btn-outline-secondary btn-sm float-right"
                 style={{ marginRight: "10px" }}
               >
-                Cancel
+                <b> Cancel</b>
               </button>
             </Link>
             <br />

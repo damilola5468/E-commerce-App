@@ -3,7 +3,7 @@ import swal from "sweetalert";
 import { FaCartPlus, FaUserPlus, FaCaretDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Card, Accordion, useAccordionToggle } from "react-bootstrap/";
-import cer from "./image/apple.jpg";
+import cer from "./image/pro2.jpg";
 import "./style.css";
 
 export default class ProductItem extends React.Component {
@@ -50,12 +50,12 @@ export default class ProductItem extends React.Component {
           {/* <Card.Header style={{ backgroundColor: "#fdfdf9" }}> */}
           <h4 class="text-center">
             {" "}
-            {/* <img
+            <img
               className="image-responsive hov"
               style={img}
               src={require(`${product.image_path}`)}
               alt="img"
-            /> */}
+            />
           </h4>
           {/* </Card.Header> */}
 
@@ -149,8 +149,8 @@ export default class ProductItem extends React.Component {
 }
 
 var img = {
-  width: "170px",
-  height: "140px",
+  width: "180px",
+  height: "170px",
   marginTop: "29px"
 };
 

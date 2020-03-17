@@ -39,12 +39,12 @@ text-transform: capitalize;
   
 @keyframes mymove {
   from {width: 200px; height: 150px;}
-  to {width: 220px; height: 180px;}
+  to {width: 95%; height: 95%;}
 }
 
-/* .hov:hover{
-animation: mymove 1ms forwards ease-in;
-} */
+.hov:hover{
+animation: mymove 1s forwards ease-in-out;
+}
 
 .jor{
   font-size:15px;

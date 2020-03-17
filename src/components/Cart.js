@@ -120,7 +120,7 @@ export default class Cart extends React.Component {
             )}
             <Link to="/checkout">
               <button className="btn btn-sm btn-outline-secondary float-right">
-                Checkout
+                <b> Checkout</b>
               </button>
             </Link>
             <button
@@ -128,7 +128,7 @@ export default class Cart extends React.Component {
               onClick={this.clearCart}
               style={{ marginRight: "10px" }}
             >
-              Clear Cart
+              <b>Clear Cart</b>
             </button>
             <br />
 
