@@ -1,8 +1,8 @@
 {
-  "name": "shopping-cart",
-  "homepage": "http://test.petxar.com",
+  "name": "Switch",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5000/s",
   "engines": {
     "node": "v12.13.1",
     "npm": "6.12.1"
@@ -19,6 +19,7 @@
     "multer": "^1.4.2",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.2",
+    "path": "^0.12.7",
     "pg": "^7.18.2",
     "react": "^16.12.0",
     "react-blink-tag": "^0.1.6",
@@ -30,9 +31,13 @@
     "sharp": "^0.23.4",
     "side-drawer": "^2.3.0",
     "sweetalert": "^2.1.2",
-    "uuid": "^3.3.3"
+    "uuid": "^3.3.3",
+    "yarn": "^1.22.4"
   },
   "scripts": {
+    "client": "npm start",
+    "server": "npx nodemon engine.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -49,6 +54,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "concurrently": "^4.1.2",
     "gh-pages": "^2.2.0"
   }
 }

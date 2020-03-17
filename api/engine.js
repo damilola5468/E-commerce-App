@@ -2,6 +2,7 @@ const mysql = require("mysql");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const path = require("path");
 var app = express();
 const jwt = require("jsonwebtoken");
 app.use(bodyParser.json());
@@ -20,13 +21,26 @@ const mysqlConnection = new Pool({
 //   database: "agro"
 // });
 
+if (process.env.NODE_ENV === "production") {
+  // Serve any static files
+  app.use(express.static(path.join(__dirname, "../build")));
+
+  // Handle React routing, return all requests to React app
+  app.get("*", function(req, res) {
+    res.sendFile(path.join(__dirname, "../build", "index.html"));
+  });
+
+  app.post("*", function(req, res) {
+    res.sendFile(path.join(__dirname, "../build", "index.html"));
+  });
+}
+
 mysqlConnection.connect(err => {
   app.listen(PORT, () => {
     console.log("App listening on port!");
   });
   if (!err) {
     console.log("Db Connection created!");
-  } else {
     console.log("Db Connection Failed: !");
   }
 });
