@@ -21,6 +21,9 @@ const mysqlConnection = new Pool({
 // });
 
 mysqlConnection.connect(err => {
+  app.listen(PORT, () => {
+    console.log("App listening on port!");
+  });
   if (!err) {
     console.log("Db Connection created!");
   } else {
@@ -76,10 +79,6 @@ app.post("/api/auth", (req, res) => {
     }
   });
   mysqlConnection.end();
-});
-
-app.listen(PORT || 7000, () => {
-  console.log("App listening on port!");
 });
 
 app.get("/Products", function(req, res) {
