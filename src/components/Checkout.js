@@ -200,7 +200,7 @@ export default class Checkout extends React.Component {
 var nav = {
   backgroundColor: "#f7f7fde0",
   width: "100%",
-  height: "65px"
+  height: "15px"
 };
 var lp = {
   fontSize: "25px"
