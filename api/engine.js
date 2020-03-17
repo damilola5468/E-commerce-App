@@ -6,13 +6,19 @@ var app = express();
 const jwt = require("jsonwebtoken");
 app.use(bodyParser.json());
 app.use(cors());
-
-var mysqlConnection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "agro"
+const PORT = process.env.PORT || 9000;
+const { Pool } = require("pg");
+const mysqlConnection = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
 });
+
+// var mysqlConnection = mysql.createConnection({
+//   host: "localhost",
+//   user: "root",
+//   password: "",
+//   database: "agro"
+// });
 
 mysqlConnection.connect(err => {
   if (!err) {
@@ -39,6 +45,7 @@ app.post("/c/products", (req, res) => {
     }
     return res.json(products);
   });
+  mysqlConnection.end();
 });
 
 app.post("/api/auth", (req, res) => {
@@ -68,10 +75,11 @@ app.post("/api/auth", (req, res) => {
       return res.status("409").json("Authentication failed. User not found.");
     }
   });
+  mysqlConnection.end();
 });
 
-app.listen(7000, () => {
-  console.log("App listening on port 7000!");
+app.listen(PORT || 7000, () => {
+  console.log("App listening on port!");
 });
 
 app.get("/Products", function(req, res) {
@@ -81,6 +89,7 @@ app.get("/Products", function(req, res) {
     console.log(result);
     res.send(result);
   });
+  mysqlConnection.end();
 });
 
 app.post("/Products", function(req, res) {
@@ -90,6 +99,7 @@ app.post("/Products", function(req, res) {
     console.log(result);
     res.send(result);
   });
+  mysqlConnection.end();
 });
 
 app.get("/product/:name", (req, res) => {
@@ -100,6 +110,7 @@ app.get("/product/:name", (req, res) => {
       else console.log(err);
     }
   );
+  mysqlConnection.end();
 });
 
 app.get("/pro/:id", (req, res) => {
@@ -110,6 +121,7 @@ app.get("/pro/:id", (req, res) => {
       else console.log(err);
     }
   );
+  mysqlConnection.end();
 });
 
 app.get("/custom", (req, res) => {
@@ -117,6 +129,7 @@ app.get("/custom", (req, res) => {
     if (!err) res.send(rows);
     else console.log(err);
   });
+  mysqlConnection.end();
 });
 
 app.get("/catepro/:category", (req, res) => {
@@ -128,6 +141,7 @@ app.get("/catepro/:category", (req, res) => {
       else console.log(err);
     }
   );
+  mysqlConnection.end();
 });
 
 app.post("/category", function(req, res) {
@@ -137,6 +151,7 @@ app.post("/category", function(req, res) {
     console.log(result);
     res.send(result);
   });
+  mysqlConnection.end();
 });
 
 app.get("/product/:id", (req, res) => {
@@ -148,6 +163,7 @@ app.get("/product/:id", (req, res) => {
       else console.log(err);
     }
   );
+  mysqlConnection.end();
 });
 
 // app.delete("/product/:id", (req, res) => {
@@ -211,4 +227,5 @@ app.post("/check", (req, res) => {
       return res.json("Signup Successful!!!");
     }
   });
+  mysqlConnection.end();
 });
