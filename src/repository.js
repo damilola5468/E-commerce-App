@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://fierce-garden-26451.herokuapp.com";
+const BASE_URL = "";
 
 export function getProducts() {
   return axios.post(`${BASE_URL}/products`).then(response => response.data);
