@@ -1,6 +1,7 @@
 {
   "name": "Switch",
   "version": "0.1.0",
+  "proxy": "http://localhost:7000",
   "private": true,
   "engines": {
     "node": "v12.13.1",
