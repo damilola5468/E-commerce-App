@@ -36,7 +36,7 @@
     "concurrently": "^4.1.2"
   },
   "scripts": {
-    "client": "npm build",
+    "client": "npm run-script build",
     "server": "npx nodemon engine.js",
     "dev": "concurrently --kill-others-on-fail \"yarn client\" \"yarn server\" ",
     "start": "react-scripts start",
