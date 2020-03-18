@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "homepage": "https://fierce-garden-26451.herokuapp.com/",
   "private": true,
+  "proxy": "http://localhost:7000",
   "engines": {
     "node": "v12.13.1",
     "npm": "6.12.1"
