@@ -1,2 +1,1 @@
-web: npm start
-web: npx nodemon engine.js
+web: yarn dev
