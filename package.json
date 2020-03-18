@@ -38,7 +38,7 @@
   "scripts": {
     "client": "npm start",
     "server": "npx nodemon engine.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "dev": "concurrently --kill-others-on-fail \"yarn client\" \"yarn server\" ",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
