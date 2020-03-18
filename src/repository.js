@@ -1,34 +1,40 @@
 import axios from "axios";
 
-// const BASE_URL = "http://localhost:7000";
+const BASE_URL = "http://localhost:7000";
 
 export function getProducts() {
-  return axios.post("/products").then(response => response.data);
+  return axios.post(`${BASE_URL}/products`).then(response => response.data);
 }
 
 export function getProducts2() {
-  return axios.post("/product2").then(response => response.data);
+  return axios.post(`${BASE_URL}/product2`).then(response => response.data);
 }
 
 export function category() {
-  return axios.post("/category").then(response => response.data);
+  return axios.post(`${BASE_URL}/category`).then(response => response.data);
 }
 
 export function getCartProducts(cart) {
-  return axios.post("/c/products", { cart }).then(response => response.data);
+  return axios
+    .post(`${BASE_URL}/c/products`, { cart })
+    .then(response => response.data);
 }
 
 export function getCategoryProduct(cat) {
-  return axios.get("/catepro/" + cat).then(response => response.data);
+  return axios
+    .get(`${BASE_URL}/catepro/` + cat)
+    .then(response => response.data);
 }
 
 export function product(name) {
-  return axios.get("/product/" + name).then(response => response.data);
+  return axios
+    .get(`${BASE_URL}/product` + name)
+    .then(response => response.data);
 }
 
 export function login(data) {
   return axios
-    .post("/api/auth", {
+    .post(`${BASE_URL}/api/auth`, {
       email: data.email,
       password: data.password
     })
@@ -45,7 +51,7 @@ export function login(data) {
 
 export function Signup(data) {
   return axios
-    .post("/signup", {
+    .post(`${BASE_URL}/signup`, {
       firstname: data.firstname,
       lastname: data.lastname,
       email: data.email,
@@ -61,7 +67,7 @@ export function Signup(data) {
 
 export function Check(data) {
   return axios
-    .post("/check", {
+    .post(`${BASE_URL}/check`, {
       firstname: data.firstname,
       lastname: data.lastname,
       password: data.password,

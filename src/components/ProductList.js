@@ -158,60 +158,6 @@ export default class ProductList extends React.Component {
                 {products.map((product, index) => (
                   <ProductItem product={product} key={index} />
                 ))}
-                <div className="col-md-3 mb-5">
-                  <Card>
-                    <h4 class="text-center">
-                      {" "}
-                      <img
-                        className="image-responsive hov "
-                        style={{
-                          width: "180px",
-                          height: "170px",
-                          marginTop: "29px"
-                        }}
-                        src={cer}
-                        alt="img"
-                      />
-                    </h4>
-                    {/* </Card.Header> */}
-
-                    <Card.Body>
-                      <h4
-                        class="text-dark text-center rtt"
-                        style={{
-                          fontSize: "17px",
-                          fontFamily: "Work sans,San serif",
-                          textTransform: "capitalize"
-                        }}
-                      >
-                        <b> Woo Shirt</b>
-                      </h4>
-
-                      <hr />
-
-                      {/* <hr /> */}
-
-                      <h5
-                        class="text-dark text-center"
-                        style={{
-                          fontSize: "16px",
-                          fontFamily: "Work sans,San serif"
-                        }}
-                      >
-                        ₦1,200
-                      </h5>
-
-                      <h4 class="text-dark text-center">
-                        <button
-                          className="btn btn-outline-secondary btn-sm"
-                          onClick={this.addToCart}
-                        >
-                          Add To Cart
-                        </button>
-                      </h4>
-                    </Card.Body>
-                  </Card>
-                </div>
               </div>
 
               {/* <hr /> */}
