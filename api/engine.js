@@ -22,19 +22,15 @@ var mysqlConnection = mysql.createConnection({
   database: "agro"
 });
 
-app.use(express.static(path.join(__dirname, "../build")));
-app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "../build", "index.html"));
-});
-app.get("/*", function(req, res) {
-  res.sendFile(path.join(__dirname, "../build", "index.html"));
-});
+if (process.env.NODE_ENV === "production") {
+  // Serve any static files
+  app.use(express.static(path.join(__dirname, "../build")));
 
-// app.use(express.static(path.join(__dirname, 'build')));
-// app.get('/', function (req, res) {
-// app.get('/*', function (req, res) {
-//    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-//  });
+  // Handle React routing, return all requests to React app
+  app.get("*", function(req, res) {
+    res.sendFile(path.join(__dirname, "../build", "index.html"));
+  });
+}
 
 mysqlConnection.connect(err => {
   if (!err) {

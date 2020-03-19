@@ -318,6 +318,8 @@ export default class Carosel extends Component {
                     there.
                     <br />
                     <br />
+                    Sweat Shirt for as low as No repose on earth around, They
+                    can to their ark repair, And enjoy it ever there.
                   </p>
                 </Carousel.Item>
                 {/* <Carousel.Item>
