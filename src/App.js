@@ -10,20 +10,26 @@ import { isAuthenticated } from "./repository";
 import Navigator from "./components/nav";
 import Index from "./components/index";
 import Footer from "./components/footer";
-
+import Pay from "./components/Pay.js";
+import Product from "./components/product.js";
 class App extends Component {
   render() {
+
+
     const auth = isAuthenticated();
+
     return (
       <Router>
         <div class="App">
           <Navigator />
 
-          <Route exact path="/" component={Index} />
           <Route exact path="/market" component={Products} />
+          <Route exact path="/product" component={Product} />
+          <Route exact path="/" component={Products} />
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/signup" component={Sigup} />
+          <Route exact path="/pay" component={Pay} />
           {/* <Route exact path="/admin" component={Admin} /> */}
           {!auth ? (
             <Route exact path="/login" component={Login} />

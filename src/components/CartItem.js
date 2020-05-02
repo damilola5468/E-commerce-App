@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.css";
-import { Card, Accordion, useAccordionToggle } from "react-bootstrap/";
+import swal from "sweetalert";
+import { Card, Accordion, useAccordionToggle,Carousel } from "react-bootstrap/";
 export default class CartItem extends React.Component {
   constructor(props) {
     super(props);
@@ -9,85 +10,89 @@ export default class CartItem extends React.Component {
     };
   }
 
+
+
   render() {
     const { product } = this.props;
     return (
-      <div className="col-md-3 mb-5">
-        <Card>
+      <div className="col-md-2 mb-5 card-item rft">
+        <Card class="card mb-5">
           {/* <Card.Header style={{ backgroundColor: "#fdfdf9" }}> */}
-          <h4 class="text-center">
-            {" "}
-            {/* <img
-            className="image-responsive hov"
-            style={img}
-            src={require(`${product.image_path}`)}
-            alt="img"
-          /> */}
-          </h4>
+
           {/* </Card.Header> */}
 
-          <Card.Body>
+          <Card.Body >
+          <Carousel controls={true} indicators={false} interval={false} pause={true} slide={true} fade={false} >
+            <Carousel.Item>
+              <div className="container hov">
+              <h4 class="text-center">
+                {" "}
+                <img
+                  className="image-responsive hov"
+                  src={require(`${product.image_path}`)}
+                  alt="img"
+                />
+              </h4>
+              </div>
+            </Carousel.Item>
+
+            <Carousel.Item>
+              <div className="container hov">
+              <h4 class="text-center">
+                {" "}
+                <img
+                  className="image-responsive hov"
+                  src={require(`${product.image_path_2}`)}
+                  alt="img"
+                />
+              </h4>
+              </div>
+            </Carousel.Item>
+          </Carousel>
+
             <h4
-              class="text-dark text-center rtt"
+              class="text-dark text-center rtt mt-3"
               style={{
-                fontSize: "20px",
-                fontFamily: "Work sans,San serif",
+                fontSize: "10px",
+                fontFamily: "noir",
                 textTransform: "capitalize"
               }}
             >
-              <b> {product.name}</b>
+              <b style={{fontSize:"15px"}}> {product.name} <span class="badge badge-secondary">{product.qty.split("-")[1]}</span></b>
             </h4>
+
 
             <hr />
 
-            <h5
-              class="text-dark text-center "
-              style={{ fontSize: "17px", fontFamily: "Work sans,San serif" }}
-            >
-              {product.available_quantity > 0 ? (
-                <div>
-                  {/* <input
-                  type="number"
-                  value={this.state.quantity}
-                  name="quantity"
-                  onChange={this.handleInputChange}
-                  className="float-right form-control"
-                  style={{
-                    fontWeight: "bold",
-                    width: "60px",
-                    height: "30px",
-                    marginRight: "0px",
-                    borderRadius: "3px",
-                    marginTop: "7px"
-                  }}
-                /> */}
-                  {/* <h5
-                  class="text-dark text-center"
-                  style={{ fontSize: "14px" }}
+            {product.available_quantity > 0 ? (
+              <h4 class="text-dark text-center kkw">
+                <button
+                  className="btn btn-outline-secondary btn-sm"
+                onClick={() => this.props.add(product)}
                 >
-                  {" "}
-                  <span class="badge badge-secondary">
-                    {" "}
-                    {product.available_quantity}
-                  </span>{" "}
-                  Item Available
-                </h5> */}
-                </div>
-              ) : (
-                <p
-                  className="text-danger"
-                  style={{
-                    fontSize: "18px",
-                    fontFamily: "Work sans,San serif"
-                  }}
-                ></p>
-              )}
-            </h5>
-            {/* <hr /> */}
+                  +
+                </button>&nbsp;
 
+                <button
+                  className="btn btn-outline-secondary btn-sm"
+                onClick={() => this.props.remove2(product)}
+                >
+                  -
+                </button>
+                <br/>
+
+              </h4>
+
+            ) : (
+              <h4 class="text-dark text-center">
+                <button className="btn btn-outline-secondary btn-sm disabled">
+                  Out of Stock
+                </button>
+              </h4>
+            )}
             <h5
-              class="text-dark text-center"
-              style={{ fontSize: "16px", fontFamily: "Work sans,San serif" }}
+              class="text-dark text-center mt-3"
+              style={{ fontSize: "15px", fontFamily: "noir" }}
             >
               ₦{product.price}
             </h5>
@@ -95,25 +100,24 @@ export default class CartItem extends React.Component {
             <h5 className="card-text text-center" style={fv}>
               <span className="card-text text-secondary fv">
                 Quantity:
-                <span class="badge badge-secondary">{product.qty}</span>
+                &nbsp;<span class="badge badge-secondary">{product.qty.split("-")[0]}</span>
               </span>
             </h5>
 
-            <h4 class="text-center">
-              {" "}
-              <button
-                className="btn btn-sm  btn-outline-secondary  "
-                onClick={() => this.props.remove(product)}
-              >
-                Remove
-              </button>
-            </h4>
+
+
+
           </Card.Body>
         </Card>
       </div>
     );
   }
 }
+var img = {
+  width: "170px",
+  height: "170px",
+  marginTop: "0px"
+};
 var fv = {
-  fontSize: "12px"
+  fontSize: "15px"
 };

@@ -2,80 +2,97 @@ import React from "react";
 import swal from "sweetalert";
 import { FaCartPlus, FaUserPlus, FaCaretDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { Card, Accordion, useAccordionToggle } from "react-bootstrap/";
-import cer from "./image/pro2.jpg";
+import { Card, Accordion, useAccordionToggle,Carousel } from "react-bootstrap/";
 import "./style.css";
 
 export default class ProductItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantity: 1
+      quantity: 1,
+      dr4:"none",
+      drt:""
     };
+        this.turnoff4= this.turnoff4.bind(this);
   }
+
+
+
+      turnoff4(event) {
+         this.setState({
+           dr4: "none"
+         });
+       }
+
+       pro(id){
+           localStorage.setItem("pro_id", JSON.stringify(id));
+           window.location = "/product"
+       }
 
   handleInputChange = event =>
     this.setState({ [event.target.name]: event.target.value });
 
-  addToCart = () => {
-    let cart = localStorage.getItem("cart")
-      ? JSON.parse(localStorage.getItem("cart"))
-      : {};
 
-    let id = this.props.product.id.toString();
-    cart[id] = cart[id] ? cart[id] : 0;
-    let qty = cart[id] + parseInt(this.state.quantity);
-    // alert(qty);
-    // alert(cart[id]);
-    if (this.props.product.available_quantity < qty) {
-      swal(
-        "Not Enough Item",
-        "We Don't Have Enough Of this Product Available!!",
-        "error"
-      );
-    } else {
-      cart[id] = qty;
-      swal("Added To Cart!", "Prooduct Added To Cart!", "success");
-    }
 
-    localStorage.setItem("cart", JSON.stringify(cart));
-  };
 
   render() {
     const { product } = this.props;
+      const { dr4,drt} = this.state;
 
     return (
-      <div className="col-md-3 mb-5">
-        <Card>
-          {/* <Card.Header style={{ backgroundColor: "#fdfdf9" }}> */}
-          <h4 class="text-center">
-            {" "}
-            <img
-              className="image-responsive hov"
-              style={img}
-              src={require(`${product.image_path}`)}
-              alt="img"
-            />
-          </h4>
-          {/* </Card.Header> */}
+      <div className="col-md-2 mb-5 card-item  ttui">
+
+
+
+
+        <Card class="card" >
+
+        <Carousel controls={false} indicators={false} interval={false} pause={true} slide={true} fade={false} >
+          <Carousel.Item>
+            <div className="container">
+            <h4 class="text-center">
+              {" "}
+              <img
+                className="image-responsive hov2 hov"
+                src={require(`${product.image_path}`)}
+                alt="img"
+              />
+
+            </h4>
+            </div>
+          </Carousel.Item>
+
+          <Carousel.Item>
+            <div className="container">
+            <h4 class="text-center">
+              {" "}
+              <img
+                className="image-responsive hov2 hov"
+                src={require(`${product.image_path_2}`)}
+                alt="img"
+              />
+            </h4>
+            </div>
+          </Carousel.Item>
+        </Carousel>
 
           <Card.Body>
             <h4
               class="text-dark text-center rtt"
               style={{
-                fontSize: "17px",
-                fontFamily: "Work sans,San serif",
-                textTransform: "capitalize"
+                fontSize: "12px",
+                fontFamily: "noir",
+
               }}
             >
-              <b> {product.name}</b>
+              <b class="rtt"> {product.name}</b>
             </h4>
 
             <hr />
 
             <h5
               class="text-dark text-center "
-              style={{ fontSize: "17px", fontFamily: "Work sans,San serif" }}
+              style={{ fontSize: "12px", fontFamily: "Work sans,San serif" }}
             >
               {product.available_quantity > 0 ? (
                 <div>
@@ -111,7 +128,7 @@ export default class ProductItem extends React.Component {
                   className="text-danger"
                   style={{
                     fontSize: "18px",
-                    fontFamily: "Work sans,San serif"
+                    fontFamily: "noir"
                   }}
                 ></p>
               )}
@@ -119,40 +136,50 @@ export default class ProductItem extends React.Component {
             {/* <hr /> */}
 
             <h5
-              class="text-dark text-center"
-              style={{ fontSize: "16px", fontFamily: "Work sans,San serif" }}
+              class="text-dark text-center gty"
+              style={{ fontSize: "15px", fontFamily: "noir" }}
             >
               ₦{product.price}
             </h5>
 
             {product.available_quantity > 0 ? (
-              <h4 class="text-dark text-center">
+              <h4 class="text-dark text-center ">
                 <button
+                  style={{ fontSize: "15px", fontFamily: "noir" }}
                   className="btn btn-outline-secondary btn-sm"
-                  onClick={this.addToCart}
+                  onClick={()=>{
+                    this.pro(product.id)}
+                  }
                 >
-                  Add To Cart
+                Purchase
                 </button>
+                <br/>
+
+
+
               </h4>
             ) : (
               <h4 class="text-dark text-center">
-                <button className="btn btn-outline-secondary btn-sm disabled">
+                <button
+                  style={{ fontSize: "11px", fontFamily: "noir" }}
+                 className="btn btn-outline-secondary btn-sm disabled">
                   Out of Stock
                 </button>
               </h4>
             )}
           </Card.Body>
         </Card>
+
+
+
+
+
       </div>
     );
   }
 }
 
-var img = {
-  width: "180px",
-  height: "170px",
-  marginTop: "29px"
-};
+
 
 var col = {
   backgroundColor: "#eef"

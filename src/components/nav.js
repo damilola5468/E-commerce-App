@@ -23,8 +23,19 @@ import {
   FaCannabis
 } from "react-icons/fa";
 import { isAuthenticated } from "../repository";
-// import "./style.css";
+import "./footer.css";
 class Navigator extends Component {
+  state = {
+    cart_total: ""
+  };
+
+  componentWillMount() {
+    // let cart = localStorage.getItem("cart");
+    //
+    //   let total = cart.split(":").length -1;
+    //   this.setState({ cart_total:total });
+  }
+
   logOut() {
     localStorage.removeItem("x-access-token");
     window.location = "/";
@@ -33,30 +44,27 @@ class Navigator extends Component {
   render() {
     const auth = isAuthenticated();
     return (
-      <div class="">
+      <div className="gyu">
         <Navbar
           collapseOnSelect
-          className="fixed-top"
+          className=""
           expand="lg"
           style={nav}
           variant="dark"
         >
           <Link to="/" style={{ textDecoration: "none" }}>
-            {/* <Navbar.Brand href="#home" style={all} className="text-dark "> */}
             <Nav className="ml-3 mt-2">
-              {/* <FaCannabis /> */}
               <h1
                 class="link mt-1"
                 style={{
-                  fontFamily: "Work sans,San serif",
+                  fontFamily: "noir",
                   fontSize: "39px",
                   textDecoration: "none"
                 }}
               >
-                <b style={{ fontSize: "29px" }}>Switch's</b>
+                <b style={{ fontSize: "20px" }}>BH Couture</b>
               </h1>
             </Nav>
-            {/* </Navbar.Brand> */}
           </Link>
 
           <Navbar.Toggle
@@ -64,7 +72,7 @@ class Navigator extends Component {
             children={
               <b
                 style={{
-                  fontFamily: "Work sans,San serif",
+                  fontFamily: "noir",
                   fontSize: "29px"
                 }}
               >
@@ -73,29 +81,30 @@ class Navigator extends Component {
             }
             style={col}
           />
+
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto"></Nav>
 
             <Nav className="ml-0">
               <Nav.Link
                 eventKey={2}
-                href="/market"
+                href="/"
                 style={io}
                 className="text-dark mt-4"
               >
                 <h4 className="lin ">
-                  <b>Market</b>
+                  <b className="lin">Market</b>
                 </h4>
               </Nav.Link>
               <Nav.Link href="/cart" style={io} className="text-dark  mt-4">
                 <h4 className="lin">
-                  <b>Cart </b>&nbsp;
+                  <b className="lin">Cart </b>&nbsp;
                 </h4>
               </Nav.Link>
 
               <Nav.Link href="/checkout" style={io} className="text-dark mt-4">
-                <h4 className="lin">
-                  <b>Checkout</b>
+                <h4 className="lin" id="hod">
+                  <b className="lin">Checkout</b>
                 </h4>{" "}
                 &nbsp;
               </Nav.Link>
@@ -108,7 +117,7 @@ class Navigator extends Component {
                   className="text-dark mt-4"
                 >
                   <h4 className="lin">
-                    <b>Login</b>
+                    <b className="lin">Login</b>
                   </h4>{" "}
                   &nbsp;
                 </Nav.Link>
@@ -121,7 +130,7 @@ class Navigator extends Component {
                 >
                   <b className="lin">
                     <h4>
-                      <b>Logout</b>
+                      <b className="lin">Logout</b>
                     </h4>
                   </b>
                 </Nav.Link>
@@ -136,7 +145,7 @@ class Navigator extends Component {
 
 var io = {
   paddingLeft: "15px",
-  fontSize: "11px"
+  fontSize: "16px"
 };
 
 var col = {
@@ -146,11 +155,10 @@ var col = {
 };
 
 var nav = {
-  backgroundColor: "#ffffff"
+  backgroundColor: "#f7f7fde0"
 };
 var img = {
   width: "180px"
-  // marginBottom: "10px"
 };
 var ju = {
   fontSize: "20px"
@@ -159,4 +167,5 @@ var ok = {
   fontSize: "30px",
   textDecoration: "none"
 };
+
 export default Navigator;

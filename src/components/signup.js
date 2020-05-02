@@ -64,9 +64,9 @@ export default class Login extends React.Component {
         <br />
         <br />
         <br />
-        <div style={nav}></div>
-        <div className="container mt-4 mb-5">
-          <h5 style={mn} className="ml-4">
+
+        <div className="container  mb-5">
+          <h5 style={mn} className="ml-4 rer">
             Signup &nbsp; <FaLock />
           </h5>
           <hr />
@@ -79,12 +79,12 @@ export default class Login extends React.Component {
                     <div class="col-md-6">
                       <div className="form-group">
                         <label>
-                          <h5>Firstname:</h5>
+                          <h5 className="rer">Firstname:</h5>
                         </label>
 
                         <input
                           type="text"
-                          className="form-control"
+                          className="form-control rer"
                           name="firstname"
                           onChange={this.handleInputChange}
                         />
@@ -94,12 +94,12 @@ export default class Login extends React.Component {
                     <div class="col-md-6">
                       <div className="form-group">
                         <label>
-                          <h5>Lastname:</h5>
+                          <h5 className="rer">Lastname:</h5>
                         </label>
 
                         <input
                           type="text"
-                          className="form-control"
+                          className="form-control rer"
                           name="lastname"
                           onChange={this.handleInputChange}
                         />
@@ -112,12 +112,12 @@ export default class Login extends React.Component {
                       {" "}
                       <div className="form-group">
                         <label>
-                          <h5>Email:</h5>
+                          <h5 className="rer">Email:</h5>
                         </label>
 
                         <input
                           type="text"
-                          className="form-control"
+                          className="form-control rer"
                           name="email"
                           onChange={this.handleInputChange}
                         />
@@ -128,12 +128,12 @@ export default class Login extends React.Component {
                       {" "}
                       <div className="form-group">
                         <label>
-                          <h5>Phone:</h5>
+                          <h5 className="rer">Phone:</h5>
                         </label>
 
                         <input
                           type="text"
-                          className="form-control"
+                          className="form-control rer"
                           name="phone"
                           onChange={this.handleInputChange}
                         />
@@ -146,11 +146,11 @@ export default class Login extends React.Component {
                       {" "}
                       <div className="form-group">
                         <label>
-                          <h5>Password:</h5>
+                          <h5 className="rer">Password:</h5>
                         </label>
                         <input
                           type="password"
-                          className="form-control"
+                          className="form-control rer"
                           name="password"
                           onChange={this.handleInputChange}
                         />
@@ -161,12 +161,12 @@ export default class Login extends React.Component {
                       {" "}
                       <div className="form-group">
                         <label>
-                          <h5>Address:</h5>
+                          <h5 className="rer">Address:</h5>
                         </label>
 
                         <input
                           type="text"
-                          className="form-control"
+                          className="form-control rer"
                           name="address"
                           onChange={this.handleInputChange}
                         />
@@ -176,15 +176,15 @@ export default class Login extends React.Component {
 
                   <button
                     type="submit"
-                    className="btn btn-sm btn-outline-secondary"
+                    className=" rer btn btn-sm btn-outline-secondary"
                   >
-                    <b>Signup</b>
+                    Signup
                   </button>
                   <a
                     href="/login"
-                    class="btn mt-3 ml-4 btn-sm btn-outline-secondary"
+                    class=" rer btn mt-4 ml-4 btn-sm btn-outline-secondary"
                   >
-                    <b> Login</b>
+                    Login
                   </a>
                 </form>
               </div>

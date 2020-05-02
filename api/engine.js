@@ -3,10 +3,13 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
+const fs = require("fs");
 var app = express();
 const jwt = require("jsonwebtoken");
 app.use(bodyParser.json());
 app.use(cors());
+const multer = require("multer");
+// const upload multer({dest: '../src/components/image/'})
 const PORT = process.env.PORT || 7000;
 // const PORT = 7000;
 const { Pool } = require("pg");
@@ -19,18 +22,19 @@ var mysqlConnection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "agro"
+  database: "mshakins"
 });
 
 if (process.env.NODE_ENV === "production") {
   // Serve any static files
-  app.use(express.static(path.join(__dirname, "../build")));
+  app.use(express.static(path.join(__dirname, "../public")));
 
   // Handle React routing, return all requests to React app
-  app.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname, "../build", "index.html"));
-  });
+  // app.get("*", function(req, res) {
+  //   res.sendFile(path.join(__dirname, "../build", "index.html"));
+  // });
 }
+app.use(express.static("public"));
 
 mysqlConnection.connect(err => {
   if (!err) {
@@ -41,7 +45,7 @@ mysqlConnection.connect(err => {
 });
 
 app.post("/c/products", (req, res) => {
-  var sql = "SELECT * FROM Products";
+  var sql = "SELECT * FROM Products ";
   mysqlConnection.query(sql, (err, result) => {
     console.log(err);
     let products = [],
@@ -91,7 +95,7 @@ app.post("/api/auth", (req, res) => {
 });
 
 app.get("/Products", function(req, res) {
-  var sql = "SELECT * FROM Products";
+  var sql = "SELECT * FROM Products ORDER BY RAND()";
   mysqlConnection.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
@@ -100,8 +104,99 @@ app.get("/Products", function(req, res) {
   // mysqlConnection.end();
 });
 
-app.post("/Products", function(req, res) {
-  var sql = "SELECT * FROM Products";
+app.get("/Type", function(req, res) {
+  var sql = "SELECT * FROM type";
+  mysqlConnection.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+  // mysqlConnection.end();
+});
+
+app.get("/SubCat/:id", (req, res) => {
+  mysqlConnection.query(
+    "SELECT * FROM subcategory WHERE cat_id =" + req.params.id + "",
+    (err, rows, fields) => {
+      if (!err) res.send(rows);
+      else console.log(err);
+    }
+  );
+  // mysqlConnection.end();
+});
+
+app.get("/SububCat/:id", (req, res) => {
+  mysqlConnection.query(
+    "SELECT * FROM sububcategory WHERE sub_category_id =" + req.params.id + "",
+    (err, rows, fields) => {
+      if (!err) res.send(rows);
+      else console.log(err);
+    }
+  );
+  // mysqlConnection.end();
+});
+
+app.get("/Sububproduct/:id", (req, res) => {
+  mysqlConnection.query(
+    "SELECT * FROM products WHERE subub_category_id =" + req.params.id + "",
+    (err, rows, fields) => {
+      if (!err) res.send(rows);
+      else console.log(err);
+    }
+  );
+  // mysqlConnection.end();
+});
+
+app.get("/allSububproduct/:id", (req, res) => {
+  mysqlConnection.query(
+    "SELECT * FROM products WHERE subub_category_id =" + req.params.id + "",
+    (err, rows, fields) => {
+      if (!err) res.send(rows);
+      else console.log(err);
+    }
+  );
+  // mysqlConnection.end();
+});
+
+app.get("/subSubCat/:id", (req, res) => {
+  mysqlConnection.query(
+    "SELECT * FROM sububcategory WHERE sub_category_id =" + req.params.id + "",
+    (err, rows, fields) => {
+      if (!err) res.send(rows);
+      else console.log(err);
+    }
+  );
+  // mysqlConnection.end();
+});
+
+app.get("/SubCatpro/:id", (req, res) => {
+  mysqlConnection.query(
+    "SELECT * FROM products WHERE sub_category =" +
+      req.params.id +
+      " ORDER BY RAND()",
+    (err, rows, fields) => {
+      if (!err) res.send(rows);
+      else console.log(err);
+    }
+  );
+  // mysqlConnection.end();
+});
+
+app.get("/Sububpro/:id", (req, res) => {
+  mysqlConnection.query(
+    "SELECT * FROM products WHERE sub_category =" +
+      req.params.id +
+      " ORDER BY RAND()",
+    (err, rows, fields) => {
+      if (!err) res.send(rows);
+      else console.log(err);
+    }
+  );
+  // mysqlConnection.end();
+});
+
+app.post("/Products/", function(req, res) {
+  var sql = "SELECT * FROM Products ORDER BY RAND()";
   mysqlConnection.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
@@ -132,11 +227,113 @@ app.get("/pro/:id", (req, res) => {
   // mysqlConnection.end();
 });
 
+//
+
+app.get("/product_id/:id", (req, res) => {
+  mysqlConnection.query(
+    "Select * FROM Products WHERE id =" + req.params.id + "",
+    (err, rows, fields) => {
+      if (!err) res.send(rows);
+      else console.log(err);
+    }
+  );
+  // mysqlConnection.end();
+});
+
+app.get("/pay/:email", (req, res) => {
+  mysqlConnection.query(
+    "SELECT * FROM custormers WHERE email ='" + req.params.email + "'",
+    (err, rows, fields) => {
+      if (!err) res.send(rows);
+      else console.log(err);
+    }
+  );
+  // mysqlConnection.end();
+});
+
+app.get("/cat/:id", (req, res) => {
+  mysqlConnection.query(
+    "Delete FROM category WHERE id =" + req.params.id + "",
+    (err, rows, fields) => {
+      if (!err) res.send(rows);
+      else console.log(err);
+    }
+  );
+  // mysqlConnection.end();
+});
+
+app.get("/subcat/del/:id", (req, res) => {
+  mysqlConnection.query(
+    "Delete FROM subcategory WHERE id =" + req.params.id + "",
+    (err, rows, fields) => {
+      if (!err) res.send(rows);
+      else console.log(err);
+    }
+  );
+  // mysqlConnection.end();
+});
+
+app.get("/sububcat/del/:id", (req, res) => {
+  mysqlConnection.query(
+    "Delete FROM sububcategory WHERE id =" + req.params.id + "",
+    (err, rows, fields) => {
+      if (!err) res.json("true");
+      else console.log(err);
+    }
+  );
+
+  // mysqlConnection.end();
+});
+
 app.get("/custom", (req, res) => {
   mysqlConnection.query("SELECT * FROM custormers", (err, rows, fields) => {
     if (!err) res.send(rows);
     else console.log(err);
   });
+  // mysqlConnection.end();
+});
+
+// app.get("/custom-count", (req, res) => {
+//   mysqlConnection.query(
+//     "SELECT COUNT(*) FROM custormers",
+//     (err, rows, fields) => {
+//       if (!err) res.send(rows);
+//       else console.log(err);
+//     }
+//   );
+//   // mysqlConnection.end();
+// });
+
+app.get("/custom-count", (req, res) => {
+  mysqlConnection.query(
+    "SELECT COUNT(*) as total FROM custormers",
+    (err, rows, fields) => {
+      if (!err) res.json(rows[0].total);
+      else console.log(err);
+    }
+  );
+  // mysqlConnection.end();
+});
+
+app.get("/product-count", (req, res) => {
+  mysqlConnection.query(
+    "SELECT COUNT(*) as total FROM products",
+    (err, rows, fields) => {
+      if (!err) res.json(rows[0].total);
+      else console.log(err);
+    }
+  );
+  // mysqlConnection.end();
+});
+
+app.get("/cat-count", (req, res) => {
+  mysqlConnection.query(
+    "SELECT COUNT(*) as total FROM category",
+    (err, rows, fields) => {
+      if (!err) res.json(rows[0].total);
+      else console.log(err);
+    }
+  );
   // mysqlConnection.end();
 });
 
@@ -152,13 +349,79 @@ app.get("/catepro/:category", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.post("/category", function(req, res) {
-  var sql = "SELECT * FROM category";
+app.get("/subcategory", function(req, res) {
+  var sql = "SELECT * FROM subcategory";
   mysqlConnection.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
     res.send(result);
   });
+  // mysqlConnection.end();
+});
+
+app.get("/subsubcategory", function(req, res) {
+  var sql = "SELECT * FROM sububcategory";
+  mysqlConnection.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+  // mysqlConnection.end();
+});
+
+app.post("/category", function(req, res) {
+  var sql = "SELECT * FROM category ORDER BY RAND()";
+  mysqlConnection.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+  // mysqlConnection.end();
+});
+
+app.get("/category", function(req, res) {
+  var sql = "SELECT * FROM category ORDER BY RAND()";
+  mysqlConnection.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+  // mysqlConnection.end();
+});
+
+app.get("/cat-admin-list/:id", (req, res) => {
+  mysqlConnection.query(
+    "SELECT * FROM category WHERE id = ?",
+    [req.params.id],
+    (err, rows, fields) => {
+      if (!err) res.send(rows);
+      else console.log(err);
+    }
+  );
+  // mysqlConnection.end();
+});
+
+app.get("/subsub-admin-list/:id", (req, res) => {
+  mysqlConnection.query(
+    "SELECT * FROM sububcategory WHERE id = ?",
+    [req.params.id],
+    (err, rows, fields) => {
+      if (!err) res.send(rows);
+      else console.log(err);
+    }
+  );
+  // mysqlConnection.end();
+});
+
+app.get("/subub-admin-list/:id", (req, res) => {
+  mysqlConnection.query(
+    "SELECT * FROM subcategory WHERE id = ?",
+    [req.params.id],
+    (err, rows, fields) => {
+      if (!err) res.send(rows);
+      else console.log(err);
+    }
+  );
   // mysqlConnection.end();
 });
 
@@ -172,6 +435,64 @@ app.get("/product/:id", (req, res) => {
     }
   );
   // mysqlConnection.end();
+});
+
+app.post("/delivery", (req, res) => {
+  let post = req.body;
+
+  mysqlConnection.query(
+    "SELECT count(*) as tiol from delivery_information WHERE email = ?",
+    [post.email],
+    (err, result, fields) => {
+      if (result[0].tiol === 1) {
+        console.log(result[0].tiol);
+        console.log(post.email);
+
+        var sql =
+          "UPDATE delivery_information SET firstname=?,lastname=? ,email=?,phone=?,phone_2=?,address=?,user_id=? WHERE email = ?";
+        mysqlConnection.query(
+          sql,
+          [
+            post.firstname,
+            post.lastname,
+            post.email,
+            post.phone,
+            post.phone2,
+            post.address,
+            post.id,
+            post.email
+          ],
+          (err, rows, fields) => {
+            if (!err) console.log("User Data Inserted");
+
+            console.log(err);
+          }
+        );
+        return res.json("Ordering Step 1 Successful");
+      } else {
+        var sql =
+          "INSERT INTO delivery_information (firstname, lastname, email, phone, phone_2, address,user_id) VALUES (?,?,?,?,?,?,?)";
+        mysqlConnection.query(
+          sql,
+          [
+            post.firstname,
+            post.lastname,
+            post.email,
+            post.phone,
+            post.phone2,
+            post.address,
+            post.id
+          ],
+          (err, rows, fields) => {
+            if (!err) console.log("User Data Inserted");
+
+            console.log(err);
+          }
+        );
+        return res.json("Ordering Step 1 Successful");
+      }
+    }
+  );
 });
 
 // app.delete("/product/:id", (req, res) => {
@@ -201,43 +522,163 @@ app.get("/product/:id", (req, res) => {
 
 app.post("/check", (req, res) => {
   let post = req.body;
-  var sql =
-    "SELECT count(*) as total FROM custormers where email='" +
+  // var sql =
+  //   "SELECT count(*) as total FROM custormers where email='" +
+  //   post.email + "'and phone ='" +  post.phone + "'";
+  var sql2 =
+    "SELECT count(*) as total2 FROM custormers where email='" +
     post.email +
-    "'and phone ='" +
+    "'";
+  var sql3 =
+    "SELECT count(*) as total3 FROM custormers where phone='" +
     post.phone +
     "'";
 
-  mysqlConnection.query(sql, (err, result, fields) => {
-    // console.log(result[0].total);
-    if (result[0].total === 1) {
+  mysqlConnection.query(sql3, (err, result, fields) => {
+    if (result[0].total3 === 1) {
       return res.json("Signup Failed Email or Phone Already Exist!!");
-    } else {
-      let post = req.body;
-      var sql =
-        "INSERT INTO custormers (firstname, lastname, email, phone, password, address) VALUES (?,?,?,?,?,?)";
-      mysqlConnection.query(
-        sql,
-        [
-          post.firstname,
-          post.lastname,
-          post.email,
-          post.phone,
-          post.password,
-          post.address
-        ],
-        (err, rows, fields) => {
-          if (!err) console.log("User Data Inserted");
-
-          console.log(err);
-        }
-      );
-      return res.json("Signup Successful!!!");
     }
+    mysqlConnection.query(sql2, (err, result, fields) => {
+      // console.log(result[0].total);
+      if (result[0].total2 === 1) {
+        return res.json("Signup Failed Email or Phone Already Exist!!");
+      } else {
+        let post = req.body;
+        var sql =
+          "INSERT INTO custormers (firstname, lastname, email, phone, password, address) VALUES (?,?,?,?,?,?)";
+        mysqlConnection.query(
+          sql,
+          [
+            post.firstname,
+            post.lastname,
+            post.email,
+            post.phone,
+            post.password,
+            post.address
+          ],
+          (err, rows, fields) => {
+            if (!err) console.log("User Data Inserted");
+
+            console.log(err);
+          }
+        );
+        return res.json("Signup Successful!!!");
+      }
+    });
+    // mysqlConnection.end();
   });
+});
+
+var storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, "src/components/image/");
+  },
+  filename: function(req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+var upload = multer({
+  storage: storage
+});
+
+// app.post("/ins/product2",upload.array('img', 2), (req, res) => {
+//   let files = req.files;
+//   res.send(files[0].originalname);
+//   var sql = 'UPDATE `products` SET `image_path` = 'jcjcj' WHERE `products`.`id` = 61';
+//
+// });
+
+app.post("/ins/product", upload.array("img", 2), (req, res) => {
+  let body = req.body;
+  let files = req.files;
+  // var upload = multer({dest: '../src/components/image/'});
+
+  const dir = "./image/";
+  var sql =
+    "INSERT INTO products (name, category, available_quantity, description,image_path, price,image_path_2, size, type, sub_category, subub_category_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+
+  mysqlConnection.query(
+    sql,
+    [
+      body.name,
+      body.category,
+      body.amount,
+      body.description,
+      dir + files[0].originalname,
+      body.price,
+      dir + files[1].originalname,
+      body.size,
+      body.type,
+      body.sub_cat,
+      body.subub_cat
+    ],
+    (err, rows, fields) => {
+      if (!err) console.log("Product Data 1 Inserted");
+
+      console.log(err);
+    }
+  );
+  return res.json("Inserted Successfully");
+
   // mysqlConnection.end();
 });
 
+app.post("/ins/cate", (req, res) => {
+  let body = req.body;
+
+  var cg = "SELECT count(*) as tl from category";
+  mysqlConnection.query(cg, (err, result, fields) => {
+    console.log(result.tl);
+    if (result[0].tl === 8) {
+      return res.json("Category Limit is 8!!!");
+    } else {
+      var sql =
+        "INSERT INTO category (category_name, description) VALUES (?,?)";
+      mysqlConnection.query(
+        sql,
+        [body.category, body.description],
+        (err, rows, fields) => {
+          if (!err) return res.json("Inserted Successfully");
+          console.log(err);
+          return res.json("Insertion not Successful");
+        }
+      );
+    }
+  });
+
+  // mysqlConnection.end();
+});
+
+app.post("/ins/sub-sub-cate", (req, res) => {
+  let body = req.body;
+
+  var sql = "INSERT INTO sububcategory (name, sub_category_id) VALUES (?,?)";
+  mysqlConnection.query(
+    sql,
+    [body.name, body.sub_cat_id],
+    (err, rows, fields) => {
+      if (!err) return res.json("Inserted Successfully");
+      console.log(err);
+      return res.json("Insertion not Successful");
+    }
+  );
+});
+
+app.post("/ins/sub-cate", (req, res) => {
+  let body = req.body;
+
+  var sql = "INSERT INTO subcategory (sub_cat_name, cat_id) VALUES (?,?)";
+  mysqlConnection.query(
+    sql,
+    [body.sub_cat_name, body.cat_id],
+    (err, rows, fields) => {
+      if (!err) return res.json("Inserted Successfully");
+      console.log(err);
+      return res.json("Insertion not Successful");
+    }
+  );
+});
+
 app.listen(PORT, () => {
-  console.log("App listening on port!");
+  console.log(`App listening on port ${PORT}!`);
 });

@@ -2,10 +2,108 @@ h6 .cte {
   text-align: center;
   font-size: 10px;
 }
+
+/* .black{
+  background-color: black;
+  width: 100%;
+  height: 100px;
+  z-index: -1;
+} */
+
+.card{
+  width: 220px;
+  margin-left: 25px;
+}
+.card-item{
+  margin-left: 60px;
+}
+.side{
+  background-color:#fdfdfe;
+  height: 440px;
+  left:0px;
+  position: absolute;
+  width: 120px;
+  top:180px;
+  /* display: none; */
+
+}
+.rti{
+    /* display: none; */
+  margin-top: 100px;
+  margin-left: 25px;
+}
+.sub{
+list-style-type: none;
+position:static;
+margin-left: 5px;
+word-spacing: 130rem;
+word-spacing: inherit;
+font-size: 13px;
+margin-top: -40px;
+z-index: 1;
+
+/* animation-duration: 2s;
+animation-fill-mode: both;
+animation-name: mymove; */
+
+
+}
+
+.lef{
+margin-top: 30px;
+position: absolute;
+word-spacing:  7877px;
+}
+
+.uuu{
+  letter-spacing:  77em;
+}
+
+@keyframes mymove2 {
+  from {font-size: 0px}
+  to {font-size: 13px}
+}
+.rio{
+  color: black;
+  background-color: white;
+}
+.kkk{
+  margin-top: 235px;
+  margin-left: -35px;
+}
+.kkw{
+  margin-top: -20px;
+  margin-left: -0px;
+}
+
+.nkk{
+  position: absolute;
+  top: 20px;
+  left: 20px;
+
+}
+.nkk2{
+  position: absolute;
+  top: 27px;
+  left: 70px;
+
+}
+.klk{
+  position: absolute;
+  margin-top: -40px;
+  margin-left: -50px;
+}
+
+
+.store{
+  position: absolute;
+  margin-top: -15px;
+  margin-left: -90px;
+}
 .int{
 
   height: "600px"
-  
+
 }
 .uik{
   margin-left: 1100px;
@@ -13,9 +111,21 @@ h6 .cte {
 .yhj{
   margin-left: 700px;
 }
+.olk{
+  margin-left: 35px;
+  margin-bottom: 5px;
+}
+
+.ico{
+  font-size: 29px;
+  position: absolute;
+  top: 98px;
+  left:-90px;
+}
 .sio{
-                      
-width: 200px;
+font-size: 13px;
+width: 400px;
+margin-top: 5px;
 }
 .uip{
   margin-top: 130px;
@@ -28,21 +138,199 @@ top: 65%;
 left: 35%;
 transform: translate(-50%, -50%);
 }
+.kkk{
+  margin-top: -20px;
+}
 
 .rtt{
+  font-size: 15px;
 text-transform: capitalize;
 }
 
 .uu{
   text-transform: capitalize;
   }
-  
-@keyframes mymove {
+
+/* @keyframes mymove {
   from {width: 200px; height: 150px;}
   to {width: 95%; height: 95%;}
+} */
+
+.lin{
+  font-size: 14px;
+}
+
+.rer{
+  font-size:17px;
+  position: relative;
+  left:0px;
+  top:-5px;
+
+}
+.hb{
+  font-size: 15px;
+
+font-family: poppins;
+}
+
+.kol{
+
+
+}
+#edc{
+z-index: 1;
+position: absolute;
+margin-left: 300px;
+top:170px;
+
+
+}
+.jjk{
+  margin-top:55px;
+  width:250px;
+  height: 250px;
+  margin-left: -0px;
+}
+
+.gh{
+  background-color: #f7f7fde0;
+  padding: 10px;
+
+  height: 350px;
+}
+.jjk2{
+  margin-top: 60px;
+  font-size: 34px;
+  margin-left:-130px;
+  font-family: times new roman;
+}
+
+.jjk3{
+
+  margin-top: 15px;
+  margin-left: -280px;
+  font-style: bold;
+  font-size: 19px;
+  font-family: noir;
+}
+
+.jjk4{
+  font-family: noir;
+  margin-top: 15px;
+  margin-left: -90px;
+}
+
+.jjk5{
+  font-family: noir;
+  margin-top: 15px;
+  margin-left: -155px;
+  font-size: 19px;
+
+}
+
+.jjk6{
+  font-size: 19px;
+  font-family: noir;
+  margin-top: 15px;
+  margin-left: -220px;
+}
+
+.jjk7{
+  font-family: verdana;
+  font-size:0px;
+  margin-top: 10px;
+  margin-left: -135px;
+  margin-bottom: 20px;
+  font-style: bold;
 }
 
 
+.erq{
+  z-index: 1;
+  position: absolute;
+  margin-left: 350px;
+  top:90px;
+  width:600px;
+
+
+}
+
+.xer3{
+  position: absolute;
+  top:-10px;
+  left:470px;
+
+}
+.card4{
+
+  width: 900px;
+  height:400px;
+}
+
+#edc2{
+z-index: 1;
+position: absolute;
+margin-left: 100px;
+top:90px;
+width: 100px;
+
+}
+.jwt{
+  margin-left: 130px;
+  font-size: 15px;
+}
+
+.btu{
+
+  border:none;
+  border-color: none;
+  background-color: transparent;
+  text-align: left;
+  margin-bottom: 0px;
+  font-size: 14px;
+
+}
+.iov{
+  width: 150px;
+
+}
+.xer{
+  position: absolute;
+  top:-15px;
+  left:145px;
+
+}
+.uih{
+  margin-left: 1200px;
+}
+
+.xer2{
+  position: absolute;
+  top:-15px;
+  left:145px;
+
+}
+
+
+@keyframes mymove {
+  from {left:160px;}
+  to {left: 0px;}
+}
+
+.rer2{
+  font-size:14px;
+  position: relative;
+  left:0px;
+  top:-7px;
+
+}
+
+.ico{
+  font-size:15px;
+  position: relative;
+  left:25px;
+  top:-12px;
+}
 
 .jor{
   font-size:15px;
@@ -63,26 +351,66 @@ button{
   outline: none;
 }
 h1{
-    
+
     text-align: left;
 }
 .yu{
-    
+
   text-align: left;
   font-size: 15px;
 }
 
 button{
-  font-family: "Work Sans",sans-serif;
+  font-family: noir;
   font-weight: normal;
   margin-top: 20px;
   font-size: 14px;
- 
+
+}
+.ito{
+margin-left: 150px;
 }
 .link{
   text-decoration: none;
   color: black;
   text-decoration-line: none;
+}
+.rer2{
+  display: none;
+}
+.jiot{
+  margin-left: 90px;
+}
+.pager{
+  list-style: none;
+margin-left: 5px;
+  text-align: center;
+  font-size: 12px;
+
+
+}
+#page-numbers{
+  text-align: center;
+}
+.hov{
+  width: 110px;
+  height: 105px;
+  margin-top: -5px;
+  margin-right: 40px;
+}
+
+.hov2{
+  width: 110px;
+  height:105px;
+  margin-top: 10px;
+  margin-right: 0px;
+}
+
+.hov3{
+  width: 110px;
+  height: 105px;
+  margin-top: 5px;
+  margin-right: 65px;
 }
 
 .lin:hover{
@@ -97,7 +425,14 @@ margin-left: 7px;
 }
 
 .red {
- 
+
+}
+.tty{
+  font-size: 16px;
+}
+.nav{
+  background-color: #f7f7fde0;
+  height: 68px;
 }
 
 .iop{
@@ -105,20 +440,69 @@ margin-left: 7px;
   top:10px;
   left:900px;
   background-color: blanchedalmond;
-  
+
 
 }
-@media only screen and (max-width: 600px) {
 
-  .hov:hover{
-    animation: mymove 1s forwards ease-in-out;
+.ioo{
+  margin-left:  50px;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+html,body,h1,h2,h3,h4,h5,h6,h7,p,b{
+  font-family: noir;
+}
+  .hov{
+    width: 900px;
+
     }
+.mlp{
+  z-index: 1;
+}
   .iop{
     position: absolute;
     top:25px;
     left:190px;
-  
+
   }
+
+  .rft{
+    width: 200px;
+
+  }
+
+  .hov{
+    width: 300px;
+    height: 290px;
+  }
+.ift{
+
+position: relative;
+
+top:-5px;
+z-index: 1;
+
+
+}
+  .sio{
+   position:absolute;
+   width: 300px;
+   top:-55px;
+   right: 30px;
+    }
+
+    .eri{
+      position:absolute;
+      top:15px;
+      left:-30px;
+
+    }
+
+    .nav{
+      height: 125px;
+    }
 
   /*
    .iok{
@@ -126,7 +510,7 @@ margin-left: 7px;
      height: 160px;
   } */
 
- 
+
   .uip{
     margin-top: 10px;
     float: left;
@@ -141,7 +525,7 @@ margin-left: 7px;
     left: 36%;
     transform: translate(-50%, -50%);
     }
-  
+
    .but{
       margin-right: 30px;
    }
@@ -155,12 +539,12 @@ margin-left: 7px;
       font-size: 11px;
       width: 139%;
       text-align: left;
-      font-family: "Work Sans",sans-serif;
+      font-family: noir;
       font-weight: normal;
-    
+
   }
   a,link, .lin{
-    font-family:poppins;
+    font-family:noir;
   font-weight:normal;
      font-size:16px;
       padding: 0px;
@@ -172,13 +556,20 @@ margin-left: 7px;
 
   .ui{
       font-size: 10px;
-      font-family: "Work Sans",sans-serif;
+      font-family: noir;
   font-weight: normal;
       margin-left: 5px;
-  
+
 }
 }
 
+.tty{
+  font-size: 19px;
+  font-family: noir;
+}
+.gty{
+  font-size: 20px;
+}
 .bg{
   /* The image used */
   /* background-image: url("photographer.jpg"); */
@@ -198,3 +589,656 @@ margin-left: 7px;
 
 }
 
+@media only screen and (max-width: 812px) {
+  .rft{
+    width: 180px;
+  }
+}
+@media only screen and (max-width: 568px) {
+  .rft{
+    width: 160px;
+  }
+}
+
+@media only screen and (max-width: 823px) {
+  .rft{
+    width: 204px;
+  }
+}
+@media only screen and (max-width: 640px) {
+  .rft{
+    width: 180px;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .rft{
+    width: 160px;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .rft{
+    width: 205px;
+  }
+}
+@media only screen and (max-width: 375px) {
+  .rft{
+    width: 185px;
+  }
+}
+@media only screen and (max-width: 360px) {
+  .rft{
+    width: 180px;
+  }
+  .ico{
+    font-size: 20px;
+    position: relative;
+    top:25px;
+    left:-15px;
+  }
+  .ioo{
+    margin-left:  0px;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .rft{
+    width: 160px;
+  }
+}
+
+
+
+
+
+@media only screen and (max-width: 731px) {
+  .rft2{
+    width: 190px;
+  }
+  .card{
+    width: auto;
+    margin-left: 0px;
+  }
+  .card-item{
+    margin-left: 0px;
+  }
+  .ioo{
+    margin-left:  0px;
+  }
+}
+@media only screen and (max-width: 812px) {
+  .rft2{
+    width: 180px;
+  }
+  .rer{
+    font-size:16px;
+    position: relative;
+    left:9px;
+    top:-10px;
+  }
+  .card{
+    width: auto;
+    margin-left: 0px;
+  }
+  .card-item{
+    margin-left: 0px;
+  }
+  .ioo{
+    margin-left:  0px;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .rft2{
+    width: 200px;
+  }
+  .ioo{
+    margin-left:  0px;
+  }
+}
+
+@media only screen and (max-width: 823px) {
+  .rft2{
+    width: 190px;
+  }
+  .rer{
+    font-size:16px;
+    position: relative;
+    left:9px;
+    top:-10px;
+  }
+  .card{
+    width: auto;
+    margin-left: 0px;
+  }
+  .card-item{
+    margin-left: 0px;
+  }
+  .ito{
+  margin-left: 0px;
+  }
+  .ioo{
+    margin-left:  0px;
+  }
+}
+@media only screen and (max-width: 640px) {
+  .rft2{
+    width: 205px;
+  }
+  .rer{
+    font-size:16px;
+    position: relative;
+    left:9px;
+    top:-10px;
+  }
+  .card{
+    width: auto;
+    margin-left: 0px;
+  }
+  .card-item{
+    margin-left: 0px;
+  }
+  .ito{
+  margin-left: 0px;
+  }
+
+  .ioo{
+    margin-left:  0px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .rft2{
+    width: 300px;
+  }
+  .card{
+    width: auto;
+    margin-left: 0px;
+  }
+  .card-item{
+    margin-left: 0px;
+  }
+  .ito{
+  margin-left: 0px;
+  }
+  .ioo{
+    margin-left:  0px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .rft2{
+    width: 187px;
+  }
+  .ito{
+  margin-left: 0px;
+  }
+  .ioo{
+    margin-left:  0px;
+  }
+}
+@media only screen and (max-width: 360px) {
+  .rft2{
+    width: 180px;
+  }
+  .card{
+    width: auto;
+    margin-left: 0px;
+  }
+  .card-item{
+    margin-left: 0px;
+  }
+  .ito{
+  margin-left: 0px;
+  }
+  .ioo{
+    margin-left:  0px;
+  }
+}
+
+
+
+
+
+
+@media only screen and (max-width: 414px) {
+  .ttui{
+    width: 207px;
+  }
+  .hov{
+    width: 100px;
+    height: 100px;
+    margin-left: -0px;
+  }
+  .sio{
+   position:absolute;
+   width: 330px;
+   top:-5px;
+   left: 65px;
+    }
+    .ico{
+      position: relative;
+      top:-14px;
+      font-size: 20px;
+      left: -10px;
+    }
+.nav{
+  height: 80px;
+}
+.btu{
+  height: 5px;
+}
+    .rer{
+      font-size:16px;
+      position: relative;
+      left:-9px;
+      top:-10px;
+    }
+    #edc{
+    z-index: 1;
+    position: absolute;
+    margin-left: 100px;
+    top:170px;
+    width: 180px;
+
+
+    }
+    .xer{
+      position: absolute;
+      top:-10px;
+      left:130px;
+
+    }
+
+    .xer2{
+      position: absolute;
+      top:-10px;
+      left:105px;
+
+    }
+
+    #edc2{
+
+    z-index: 1;
+    position: absolute;
+    margin-left: 155px;
+    top:90px;
+      width: 145px;
+
+
+    }
+
+    .card{
+      width: auto;
+      margin-left: 0px;
+    }
+    .card-item{
+      margin-left: 0px;
+    }
+    .ito{
+    margin-left: 0px;
+    }
+    .ioo{
+      margin-left: 0px;
+    }
+
+}
+
+
+
+@media only screen and (max-width: 411px) {
+  .ttui{
+    width: 205px;
+  }
+  .hov{
+    width: 100px;
+    height: 100px;
+    margin-left: -0px;
+  }
+  .hovc{
+    width: 100px;
+    height: 100px;
+    margin-left: 10px;
+  }
+  .ico{
+    position: relative;
+    top:-14px;
+    font-size: 19px;
+    left: 10px;
+  }
+  .sio{
+   position:absolute;
+   width: 325px;
+   top:-8px;
+   right: 30px;
+   left: 80px;
+    }
+
+    .btu{
+      height: 0px;
+
+    }
+
+    .nav{
+      height: 80px;
+    }
+    .rer{
+      font-size:16px;
+      position: relative;
+      left:9px;
+      top:-10px;
+    }
+
+    #edc{
+    z-index: 1;
+    position: absolute;
+    margin-left: 100px;
+    top:170px;
+    width: 180px;
+
+
+    }
+    .xer{
+      position: absolute;
+      top:-10px;
+      left:130px;
+
+    }
+
+    .xer2{
+      position: absolute;
+      top:-10px;
+      left:105px;
+
+    }
+
+    #edc2{
+
+    z-index: 1;
+    position: absolute;
+    margin-left: 155px;
+    top:90px;
+      width: 138px;
+
+
+    }
+
+    .card{
+      width: auto;
+      margin-left: 0px;
+    }
+    .card-item{
+      margin-left: 0px;
+    }
+    .ito{
+    margin-left: 0px;
+    }
+    .ioo{
+      margin-left:  0px;
+    }
+}
+
+
+@media only screen and (max-width: 375px) {
+  .nav{
+    height: 60px;
+  }
+
+  #edc{
+  z-index: 1;
+  position: absolute;
+  margin-left: 90px;
+  top:170px;
+  width: 180px;
+
+
+  }
+  .xer{
+    position: absolute;
+    top:-10px;
+    left:130px;
+
+  }
+
+  .xer2{
+    position: absolute;
+    top:-10px;
+    left:105px;
+
+  }
+
+  #edc2{
+
+  z-index: 1;
+  position: absolute;
+  margin-left: 140px;
+  top:90px;
+    width: 144px;
+
+
+  }
+  .ttui{
+    width: 187px;
+  }
+  .hov{
+    width: 85px;
+    height: 85px;
+      margin-left: -0px;
+  }
+  .hovc{
+
+      margin-left: 7px;
+  }
+  .rer{
+    font-size:13px;
+    position: absolute;
+    left:-130px;
+
+  }
+.ico{
+  font-size: 17px;
+  position: absolute;
+  top:17px;
+left: -1px;
+}
+  .sio{
+   position:absolute;
+   width: 320px;
+   top:-10px;
+   left: 50px;
+
+    }
+    .rer{
+      font-size:16px;
+      position: relative;
+      left:-10px;
+      top:-10px;
+    }
+.nav{
+  height: 80px;
+}
+
+    .yuh{
+
+        font-size:16px;
+        position: relative;
+        left:10px;
+        top:-10px;
+
+    }
+    .card{
+      width:auto;
+      margin-left: 0px;
+    }
+    .card-item{
+      margin-left: 0px;
+    }
+    .ito{
+    margin-left: 0px;
+    }
+    .ioo{
+      margin-left:  0px;
+    }
+}
+
+
+@media only screen and (max-width: 360px) {
+
+
+  #edc{
+  z-index: 1;
+  position: absolute;
+  margin-left: 80px;
+  top:170px;
+
+
+  }
+
+  #edc2{
+  z-index: 1;
+  position: absolute;
+  margin-left: 136px;
+  top:90px;
+
+
+  }
+
+
+  .ttui{
+    width: 180px;
+  }
+  .hov{
+    width: 80px;
+    height: 80px;
+    margin-left: -5px;
+  }
+.btu{
+  height: 5px;
+
+}
+.nav{
+  height: 80px;
+}
+  .sio{
+   position:absolute;
+   width: 320px;
+   top:-10px;
+   left: 41px;
+    }
+    .ico{
+      font-size: 15px;
+      position: absolute;
+      top:18px;
+      left: 10px;
+    }
+    .rer{
+      font-size:14px;
+      position: relative;
+      left:-0px;
+      top:-10px;
+    }
+    .card{
+      width: auto;
+      margin-left: 0px;
+    }
+    .card-item{
+      margin-left: 0px;
+    }
+    .ito{
+    margin-left: 0px;
+    }
+    .ioo{
+      margin-left: 0px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+  .ttui{
+    width: 160px;
+  }
+  .hov{
+    width: 80px;
+    height: 80px;
+    margin-left: -10px;
+  }
+
+  .hovc{
+    width: 100px;
+    height: 100px;
+    margin-left: -0px;
+  }
+
+  .rer{
+    font-size:13px;
+    position: relative;
+    left:-10px;
+  }
+.ico{
+  font-size: 15px;
+  position: absolute;
+  top:20px;
+}
+
+
+    #edc{
+    z-index: 1;
+    position: absolute;
+    margin-left: 60px;
+    top:170px;
+    width: 180px;
+
+
+    }
+    .xer{
+      position: absolute;
+      top:-10px;
+      left:130px;
+
+    }
+
+    .xer2{
+      position: absolute;
+      top:-10px;
+      left:105px;
+
+    }
+
+    #edc2{
+
+    z-index: 1;
+    position: absolute;
+    margin-left: 120px;
+    top:90px;
+      width: 138px;
+
+
+    }
+.btu{
+  height: 0px;
+}
+  .sio{
+   position:absolute;
+   width: 287px;
+   top:-15px;
+   left: 35px;
+    }
+    .rer{
+      font-size:13px;
+      position: relative;
+      left:9px;
+      top:-10px;
+    }
+    .card{
+      width: auto;
+      margin-left: 0px;
+    }
+    .card-item{
+      margin-left: 0px;
+    }
+    .ito{
+    margin-left: 0px;
+    }
+    .ioo{
+      margin-left:  0px;
+    }
+
+}

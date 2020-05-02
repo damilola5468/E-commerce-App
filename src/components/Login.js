@@ -28,7 +28,7 @@ export default class Login extends React.Component {
   submitLogin(event) {
     event.preventDefault();
     login(this.state)
-      .then(token => (window.location = "/market"))
+      .then(token => (window.location = "/checkout"))
       .catch(err => swal(err, "Error Occured", "error"));
   }
 
@@ -39,9 +39,9 @@ export default class Login extends React.Component {
         <br />
         <br />
         <br />
-        <div style={nav}></div>
-        <div className="container mt-4 mb-5">
-          <h5 style={mn} className="ml-4">
+
+        <div className="container mb-5">
+          <h5 style={mn} className="ml-4 rer">
             &nbsp; Login &nbsp; <FaLock />
           </h5>
           <hr />
@@ -53,12 +53,12 @@ export default class Login extends React.Component {
                   <div class="col-md-8">
                     <div className="form-group">
                       <label>
-                        <h5>Email:</h5>
+                        <h5 className="rer">Email:</h5>
                       </label>
 
                       <input
                         type="text"
-                        className="form-control"
+                        className="form-control rer"
                         name="email"
                         onChange={this.handleInputChange}
                       />
@@ -69,11 +69,11 @@ export default class Login extends React.Component {
                     {" "}
                     <div className="form-group">
                       <label>
-                        <h5>Password:</h5>
+                        <h5 className="rer">Password:</h5>
                       </label>
                       <input
                         type="password"
-                        className="form-control"
+                        className="form-control rer"
                         name="password"
                         onChange={this.handleInputChange}
                       />
@@ -82,23 +82,25 @@ export default class Login extends React.Component {
 
                   <button
                     type="submit"
-                    className="btn btn-sm btn-outline-secondary ml-3"
+                    className="rer btn btn-sm btn-outline-secondary ml-3"
                   >
-                    <b>Login</b>
+                    Login
                   </button>
 
                   <a
                     href="/signup"
-                    class="btn mt-3 ml-4 btn-sm btn-outline-secondary"
+                    class="btn mt-3 ml-4 rer btn-sm btn-outline-secondary"
                   >
-                    <b>Signup</b>
+                    Signup
                   </a>
                 </form>
               </div>
             </div>
           </div>
+
+          </div>
         </div>
-      </div>
+
     );
   }
 }

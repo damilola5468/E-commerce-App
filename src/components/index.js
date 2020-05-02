@@ -26,7 +26,7 @@ import {
   Col
 } from "react-bootstrap/";
 import "bootstrap/dist/css/bootstrap.min.css";
-import cer from "./image/cer.jpg";
+
 import "./style.css";
 export default class Index extends React.Component {
   constructor(props) {
@@ -77,8 +77,8 @@ export default class Index extends React.Component {
     return (
       <div className="mt-0">
         <br />
-        <div style={nav}>
-          <div className="container mt-3">
+        <div>
+          <div className="container">
             <div className="row">
               <div className="col-lg-6">
                 <Navbar
@@ -87,60 +87,21 @@ export default class Index extends React.Component {
                   expand="lg"
                   variant="dark"
                 >
-                  {/* <Navbar.Toggle
-                    aria-controls="responsive-navbar-nav"
-                    children={
-                      <h1 style={ju}>
-                        <FaBars />
-                      </h1>
-                    }
-                    style={col}
-                  /> */}
                   <Navbar.Collapse id="responsive-navbar-nav">
-                    {/* <Nav className="mr-auto"></Nav> */}
-                    <Nav className="ml-5 mt-3">
+                    <Nav className="ml-5">
                       {category.map((category, index) => (
                         <button
                           onClick={this.handleClick}
                           value={category.id}
                           style={btu}
                         >
-                          <h2
-                            class="rtt ml-3 mt-3"
-                            style={{ fontSize: "16px" }}
-                          >
-                            {/* {category.category_name} &nbsp; &nbsp; &nbsp; */}
-                          </h2>
+                          <h2 class=" ml-3" style={{ fontSize: "16px" }}></h2>
                         </button>
                       ))}
-
-                      {/* <Nav className="mr-auto"></Nav> */}
                     </Nav>
                   </Navbar.Collapse>
                 </Navbar>
               </div>
-              {/* <div className="col-lg-6 float-left">
-                <Nav.Link href="" className="text-dark mt-4  ">
-                  <Form.Group as={Col} md="12" className="mt-3">
-                    <InputGroup>
-                      <InputGroup.Prepend>
-                        <InputGroup.Text style={uyh} id="inputGroupPrepend">
-                          <FaSearch style={{ color: "#fdfdfe" }} />
-                        </InputGroup.Text>
-                      </InputGroup.Prepend>
-                      <Form.Control
-                        type="text"
-                        placeholder="Enter a Product Name Here"
-                        aria-describedby="inputGroupPrepend"
-                        onChange={this.onchange}
-                        style={uyw}
-                        class="sio ml-5 float-left"
-                        required
-                      />
-                    </InputGroup>
-                  </Form.Group>
-                </Nav.Link>
-              </div> */}
             </div>
           </div>
         </div>

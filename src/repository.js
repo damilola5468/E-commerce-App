@@ -1,9 +1,43 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:7000";
+const BASE_URL = "https://bh-couture.herokuapp.com/";
 
 export function getProducts() {
   return axios.post(`${BASE_URL}/products`).then(response => response.data);
+}
+
+export function getSubCat(id) {
+  return axios.get(`${BASE_URL}/SubCat/` + id).then(response => response.data);
+}
+
+export function getSubCatPro(id) {
+  return axios
+    .get(`${BASE_URL}/SubCatpro/` + id)
+    .then(response => response.data);
+}
+
+export function getsubSubCat(id) {
+  return axios
+    .get(`${BASE_URL}/subSubCat/` + id)
+    .then(response => response.data);
+}
+
+export function getsubSubProduct(id) {
+  return axios
+    .get(
+      `${BASE_URL}/Sububproduct
+/` + id
+    )
+    .then(response => response.data);
+}
+
+export function getallsubSubProduct(id) {
+  return axios
+    .get(
+      `${BASE_URL}/Sububpro
+/` + id
+    )
+    .then(response => response.data);
 }
 
 export function getProducts2() {
@@ -12,6 +46,14 @@ export function getProducts2() {
 
 export function category() {
   return axios.post(`${BASE_URL}/category`).then(response => response.data);
+}
+
+export function Type() {
+  return axios.post(`${BASE_URL}/type`).then(response => response.data);
+}
+
+export function userpay(email) {
+  return axios.get(`${BASE_URL}/pay/` + email).then(response => response.data);
 }
 
 export function getCartProducts(cart) {
@@ -28,7 +70,13 @@ export function getCategoryProduct(cat) {
 
 export function product(name) {
   return axios
-    .get(`${BASE_URL}/product` + name)
+    .get(`${BASE_URL}/product/` + name)
+    .then(response => response.data);
+}
+
+export function productby_id(id) {
+  return axios
+    .get(`${BASE_URL}/product_id/` + id)
     .then(response => response.data);
 }
 
@@ -40,6 +88,7 @@ export function login(data) {
     })
     .then(response => {
       localStorage.setItem("x-access-token", response.data.token);
+      localStorage.setItem("user", data.email);
       localStorage.setItem(
         "x-access-token-expiration",
         Date.now() + 2 * 60 * 60 * 1000
@@ -71,6 +120,22 @@ export function Check(data) {
       firstname: data.firstname,
       lastname: data.lastname,
       password: data.password,
+      address: data.address,
+      email: data.email,
+      phone: data.phone
+    })
+    .then(response => {
+      return response.data;
+    });
+}
+
+export function Order_1(data) {
+  return axios
+    .post(`${BASE_URL}/delivery`, {
+      id: data.id,
+      firstname: data.firstname,
+      lastname: data.lastname,
+      phone2: data.phone2,
       address: data.address,
       email: data.email,
       phone: data.phone
