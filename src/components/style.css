@@ -1,3 +1,10 @@
+@font-face {
+font-family: noir;
+src: url(Noir_regular.woff);
+}
+
+
+
 h6 .cte {
   text-align: center;
   font-size: 10px;
