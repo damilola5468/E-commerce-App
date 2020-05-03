@@ -21,6 +21,8 @@ const client = new Client({
   ssl: true
 });
 
+client.connect();
+
 if (process.env.NODE_ENV === "production") {
   // Serve any static files
   app.use(express.static(path.join(__dirname, "../build")));
@@ -47,7 +49,6 @@ app.get("/hello", (req, res) => {
 });
 
 app.post("/c/products", (req, res) => {
-  client.connect();
   var sql = "SELECT * FROM Products ";
   client.query(sql, (err, result) => {
     console.log(err);
@@ -69,7 +70,6 @@ app.post("/c/products", (req, res) => {
 });
 
 app.post("/api/auth", (req, res) => {
-  client.connect();
   var sql = "SELECT * FROM custormers";
   client.query(sql, (err, result) => {
     console.log(err);
@@ -101,7 +101,6 @@ app.post("/api/auth", (req, res) => {
 });
 
 app.get("/Products", function(req, res) {
-  client.connect();
   var sql = "SELECT * FROM Products ORDER BY RAND();";
   client.query(sql, (err, result) => {
     if (err) console.log(err);
@@ -113,7 +112,6 @@ app.get("/Products", function(req, res) {
 });
 
 app.get("/Type", function(req, res) {
-  client.connect();
   var sql = "SELECT * FROM type;";
   client.query(sql, (err, result) => {
     if (err) console.log(err);
@@ -125,7 +123,6 @@ app.get("/Type", function(req, res) {
 });
 
 app.get("/SubCat/:id", (req, res) => {
-  client.connect();
   client.query(
     "SELECT * FROM subcategory WHERE cat_id =" + req.params.id + ";",
     (err, rows, fields) => {
@@ -138,7 +135,6 @@ app.get("/SubCat/:id", (req, res) => {
 });
 
 app.get("/SububCat/:id", (req, res) => {
-  client.connect();
   client.query(
     "SELECT * FROM sububcategory WHERE sub_category_id =" + req.params.id + ";",
     (err, rows, fields) => {
@@ -151,7 +147,6 @@ app.get("/SububCat/:id", (req, res) => {
 });
 
 app.get("/Sububproduct/:id", (req, res) => {
-  client.connect();
   client.query(
     "SELECT * FROM products WHERE subub_category_id =" + req.params.id + ";",
     (err, rows, fields) => {
@@ -164,7 +159,6 @@ app.get("/Sububproduct/:id", (req, res) => {
 });
 
 app.get("/allSububproduct/:id", (req, res) => {
-  client.connect();
   client.query(
     "SELECT * FROM products WHERE subub_category_id =" + req.params.id + ";",
     (err, rows, fields) => {
@@ -177,7 +171,6 @@ app.get("/allSububproduct/:id", (req, res) => {
 });
 
 app.get("/subSubCat/:id", (req, res) => {
-  client.connect();
   client.query(
     "SELECT * FROM sububcategory WHERE sub_category_id =" + req.params.id + ";",
     (err, rows, fields) => {
@@ -190,7 +183,6 @@ app.get("/subSubCat/:id", (req, res) => {
 });
 
 app.get("/SubCatpro/:id", (req, res) => {
-  client.connect();
   client.query(
     "SELECT * FROM products WHERE sub_category =" +
       req.params.id +
@@ -205,7 +197,6 @@ app.get("/SubCatpro/:id", (req, res) => {
 });
 
 app.get("/Sububpro/:id", (req, res) => {
-  client.connect();
   client.query(
     "SELECT * FROM products WHERE sub_category =" +
       req.params.id +
@@ -220,7 +211,6 @@ app.get("/Sububpro/:id", (req, res) => {
 });
 
 app.post("/Products/", function(req, res) {
-  client.connect();
   var sql = "SELECT * FROM products ORDER BY RAND();";
   client.query(sql, (err, result) => {
     if (err) console.log(err);
@@ -232,7 +222,6 @@ app.post("/Products/", function(req, res) {
 });
 
 app.get("/product/:name", (req, res) => {
-  client.connect();
   client.query(
     "SELECT * FROM products WHERE name LIKE '%" + [req.params.name] + "%';",
     (err, rows, fields) => {
@@ -245,7 +234,6 @@ app.get("/product/:name", (req, res) => {
 });
 
 app.get("/pro/:id", (req, res) => {
-  client.connect();
   client.query(
     "Delete FROM products WHERE id =" + req.params.id + ";",
     (err, rows, fields) => {
@@ -260,7 +248,6 @@ app.get("/pro/:id", (req, res) => {
 //
 
 app.get("/product_id/:id", (req, res) => {
-  client.connect();
   client.query(
     "Select * FROM products WHERE id =" + req.params.id + ";",
     (err, rows, fields) => {
@@ -273,7 +260,6 @@ app.get("/product_id/:id", (req, res) => {
 });
 
 app.get("/pay/:email", (req, res) => {
-  client.connect();
   client.query(
     "SELECT * FROM custormers WHERE email ='" + req.params.email + "';",
     (err, rows, fields) => {
@@ -286,7 +272,6 @@ app.get("/pay/:email", (req, res) => {
 });
 
 app.get("/cat/:id", (req, res) => {
-  client.connect();
   client.query(
     "Delete FROM category WHERE id =" + req.params.id + ";",
     (err, rows, fields) => {
@@ -299,7 +284,6 @@ app.get("/cat/:id", (req, res) => {
 });
 
 app.get("/subcat/del/:id", (req, res) => {
-  client.connect();
   client.query(
     "Delete FROM subcategory WHERE id =" + req.params.id + ";",
     (err, rows, fields) => {
@@ -311,7 +295,6 @@ app.get("/subcat/del/:id", (req, res) => {
 });
 
 app.get("/sububcat/del/:id", (req, res) => {
-  client.connect();
   client.query(
     "Delete FROM sububcategory WHERE id =" + req.params.id + ";",
     (err, rows, fields) => {
@@ -324,7 +307,6 @@ app.get("/sububcat/del/:id", (req, res) => {
 });
 
 app.get("/custom", (req, res) => {
-  client.connect();
   client.query("SELECT * FROM custormers;", (err, rows, fields) => {
     if (!err) res.send(rows);
     else console.log(err);
@@ -344,7 +326,6 @@ app.get("/custom", (req, res) => {
 // });
 
 app.get("/custom-count", (req, res) => {
-  client.connect();
   client.query(
     "SELECT COUNT(*) as total FROM custormers;",
     (err, rows, fields) => {
@@ -357,7 +338,6 @@ app.get("/custom-count", (req, res) => {
 });
 
 app.get("/product-count", (req, res) => {
-  client.connect();
   client.query(
     "SELECT COUNT(*) as total FROM products;",
     (err, rows, fields) => {
@@ -370,7 +350,6 @@ app.get("/product-count", (req, res) => {
 });
 
 app.get("/cat-count", (req, res) => {
-  client.connect();
   client.query(
     "SELECT COUNT(*) as total FROM category;",
     (err, rows, fields) => {
@@ -383,7 +362,6 @@ app.get("/cat-count", (req, res) => {
 });
 
 app.get("/catepro/:category", (req, res) => {
-  client.connect();
   client.query(
     "SELECT * FROM products WHERE category = ?;",
     [req.params.category],
@@ -397,7 +375,6 @@ app.get("/catepro/:category", (req, res) => {
 });
 
 app.get("/subcategory", function(req, res) {
-  client.connect();
   var sql = "SELECT * FROM subcategory;";
   client.query(sql, (err, result) => {
     if (err) console.log(err);
@@ -409,7 +386,6 @@ app.get("/subcategory", function(req, res) {
 });
 
 app.get("/subsubcategory", function(req, res) {
-  client.connect();
   var sql = "SELECT * FROM sububcategory;";
   client.query(sql, (err, result) => {
     if (err) console.log(err);
@@ -421,7 +397,6 @@ app.get("/subsubcategory", function(req, res) {
 });
 
 app.post("/category", function(req, res) {
-  client.connect();
   var sql = "SELECT * FROM category ORDER BY RAND();";
   client.query(sql, (err, result) => {
     if (err) console.log(err);
@@ -433,7 +408,6 @@ app.post("/category", function(req, res) {
 });
 
 app.get("/category", function(req, res) {
-  client.connect();
   var sql = "SELECT * FROM category ORDER BY RAND();";
   client.query(sql, (err, result) => {
     if (err) console.log(err);
@@ -445,7 +419,6 @@ app.get("/category", function(req, res) {
 });
 
 app.get("/cat-admin-list/:id", (req, res) => {
-  client.connect();
   client.query(
     "SELECT * FROM category WHERE id = ?;",
     [req.params.id],
@@ -459,7 +432,6 @@ app.get("/cat-admin-list/:id", (req, res) => {
 });
 
 app.get("/subsub-admin-list/:id", (req, res) => {
-  client.connect();
   client.query(
     "SELECT * FROM sububcategory WHERE id = ?;",
     [req.params.id],
@@ -473,7 +445,6 @@ app.get("/subsub-admin-list/:id", (req, res) => {
 });
 
 app.get("/subub-admin-list/:id", (req, res) => {
-  client.connect();
   client.query(
     "SELECT * FROM subcategory WHERE id = ?;",
     [req.params.id],
@@ -487,7 +458,6 @@ app.get("/subub-admin-list/:id", (req, res) => {
 });
 
 app.get("/product/:id", (req, res) => {
-  client.connect();
   client.query(
     "SELECT * FROM products WHERE id = ?;",
     [req.params.id],
@@ -501,7 +471,6 @@ app.get("/product/:id", (req, res) => {
 });
 
 app.post("/delivery", (req, res) => {
-  client.connect();
   let post = req.body;
 
   client.query(
@@ -586,7 +555,6 @@ app.post("/delivery", (req, res) => {
 // });
 
 app.post("/check", (req, res) => {
-  client.connect();
   let post = req.body;
   // var sql =
   //   "SELECT count(*) as total FROM custormers where email='" +
@@ -656,7 +624,6 @@ var upload = multer({
 // });
 
 app.post("/ins/product", upload.array("img", 2), (req, res) => {
-  client.connect();
   let body = req.body;
   let files = req.files;
   // var upload = multer({dest: '../src/components/image/'});
@@ -693,7 +660,6 @@ app.post("/ins/product", upload.array("img", 2), (req, res) => {
 });
 
 app.post("/ins/cate", (req, res) => {
-  client.connect();
   let body = req.body;
 
   var cg = "SELECT count(*) as tl from category;";
@@ -721,7 +687,7 @@ app.post("/ins/cate", (req, res) => {
 
 app.post("/ins/sub-sub-cate", (req, res) => {
   let body = req.body;
-  client.connect();
+
   var sql = "INSERT INTO sububcategory (name, sub_category_id) VALUES (?,?);";
   client.query(sql, [body.name, body.sub_cat_id], (err, rows, fields) => {
     if (!err) return res.json("Inserted Successfully");
@@ -733,7 +699,7 @@ app.post("/ins/sub-sub-cate", (req, res) => {
 
 app.post("/ins/sub-cate", (req, res) => {
   let body = req.body;
-  client.connect();
+
   var sql = "INSERT INTO subcategory (sub_cat_name, cat_id) VALUES (?,?);";
   client.query(sql, [body.sub_cat_name, body.cat_id], (err, rows, fields) => {
     if (!err) return res.json("Inserted Successfully");
