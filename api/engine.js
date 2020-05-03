@@ -734,7 +734,7 @@ app.post("/ins/sub-sub-cate", (req, res) => {
 
 app.post("/ins/sub-cate", (req, res) => {
   let body = req.body;
-
+  const client = pool.connect();
   var sql = "INSERT INTO subcategory (sub_cat_name, cat_id) VALUES (?,?)";
   client.query(sql, [body.sub_cat_name, body.cat_id], (err, rows, fields) => {
     if (!err) return res.json("Inserted Successfully");

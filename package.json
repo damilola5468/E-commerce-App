@@ -39,13 +39,12 @@
   "scripts": {
     "client": "yarn build",
     "server": "npx nodemon engine.js",
-    "dev": "concurrently \"npm run server\"  \" npm run client\"",
+    "dev": "concurrently \"npm run api\"  \" npm run start\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "api": "nodemon api/engine.js",
-    "heroku-postbuild": "cd client && yarn && yarn run build"
+    "api": "nodemon api/engine.js"
   },
   "eslintConfig": {
     "extends": "react-app"
