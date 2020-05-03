@@ -4,25 +4,28 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
+const knex = require("knex");
 var app = express();
 const jwt = require("jsonwebtoken");
 app.use(bodyParser.json());
 app.use(cors());
 const multer = require("multer");
+
 // const upload multer({dest: '../src/components/image/'})
 const PORT = process.env.PORT || 7000;
 // const PORT = 7000;
-const { Pool } = require("pg");
+const { pg } = require("pg");
 // const mysqlConnection = new Pool({
 //   connectionString: process.env.DATABASE_URL,
 //   ssl: true
 // });
 
-var mysqlConnection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "mshakins"
+var mysqlConnection = knex({
+  client: "pg",
+  connection: {
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  }
 });
 
 if (process.env.NODE_ENV === "production") {
