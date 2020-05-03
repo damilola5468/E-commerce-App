@@ -221,7 +221,7 @@ app.get("/Sububpro/:id", (req, res) => {
 
 app.post("/Products/", function(req, res) {
   client.connect();
-  var sql = "SELECT * FROM Products ORDER BY RAND()";
+  var sql = "SELECT * FROM Products ORDER BY RAND();";
   client.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
