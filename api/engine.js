@@ -65,7 +65,7 @@ app.post("/c/products", (req, res) => {
     }
     return res.json(products);
   });
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -96,7 +96,7 @@ app.post("/api/auth", (req, res) => {
       return res.status("409").json("Authentication failed. User not found.");
     }
   });
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -107,7 +107,7 @@ app.get("/Products", function(req, res) {
     console.log(result);
     res.send(result);
   });
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -118,7 +118,7 @@ app.get("/Type", function(req, res) {
     console.log(result);
     res.send(result);
   });
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -130,7 +130,7 @@ app.get("/SubCat/:id", (req, res) => {
       else console.log(err);
     }
   );
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -142,7 +142,7 @@ app.get("/SububCat/:id", (req, res) => {
       else console.log(err);
     }
   );
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -154,7 +154,7 @@ app.get("/Sububproduct/:id", (req, res) => {
       else console.log(err);
     }
   );
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -166,7 +166,7 @@ app.get("/allSububproduct/:id", (req, res) => {
       else console.log(err);
     }
   );
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -178,7 +178,7 @@ app.get("/subSubCat/:id", (req, res) => {
       else console.log(err);
     }
   );
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -192,7 +192,7 @@ app.get("/SubCatpro/:id", (req, res) => {
       else console.log(err);
     }
   );
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -206,7 +206,7 @@ app.get("/Sububpro/:id", (req, res) => {
       else console.log(err);
     }
   );
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -217,7 +217,7 @@ app.post("/Products/", function(req, res) {
     console.log(result);
     res.send(result);
   });
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -229,7 +229,7 @@ app.get("/product/:name", (req, res) => {
       else console.log(err);
     }
   );
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -241,7 +241,7 @@ app.get("/pro/:id", (req, res) => {
       else console.log(err);
     }
   );
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -255,7 +255,7 @@ app.get("/product_id/:id", (req, res) => {
       else console.log(err);
     }
   );
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -267,7 +267,7 @@ app.get("/pay/:email", (req, res) => {
       else console.log(err);
     }
   );
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -279,7 +279,7 @@ app.get("/cat/:id", (req, res) => {
       else console.log(err);
     }
   );
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -302,7 +302,7 @@ app.get("/sububcat/del/:id", (req, res) => {
       else console.log(err);
     }
   );
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -333,7 +333,7 @@ app.get("/custom-count", (req, res) => {
       else console.log(err);
     }
   );
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -345,7 +345,7 @@ app.get("/product-count", (req, res) => {
       else console.log(err);
     }
   );
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -357,7 +357,7 @@ app.get("/cat-count", (req, res) => {
       else console.log(err);
     }
   );
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -370,7 +370,7 @@ app.get("/catepro/:category", (req, res) => {
       else console.log(err);
     }
   );
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -381,7 +381,7 @@ app.get("/subcategory", function(req, res) {
     console.log(result);
     res.send(result);
   });
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -392,7 +392,7 @@ app.get("/subsubcategory", function(req, res) {
     console.log(result);
     res.send(result);
   });
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -403,7 +403,7 @@ app.post("/category", function(req, res) {
     console.log(result);
     res.send(result);
   });
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -414,7 +414,7 @@ app.get("/category", function(req, res) {
     console.log(result);
     res.send(result);
   });
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -427,7 +427,7 @@ app.get("/cat-admin-list/:id", (req, res) => {
       else console.log(err);
     }
   );
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -440,7 +440,7 @@ app.get("/subsub-admin-list/:id", (req, res) => {
       else console.log(err);
     }
   );
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -453,7 +453,7 @@ app.get("/subub-admin-list/:id", (req, res) => {
       else console.log(err);
     }
   );
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -466,7 +466,7 @@ app.get("/product/:id", (req, res) => {
       else console.log(err);
     }
   );
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -522,7 +522,7 @@ app.post("/delivery", (req, res) => {
             console.log(err);
           }
         );
-        client.end();
+        // client.end();
         return res.json("Ordering Step 1 Successful");
       }
     }
@@ -599,7 +599,7 @@ app.post("/check", (req, res) => {
         return res.json("Signup Successful!!!");
       }
     });
-    client.end();
+    // client.end();
     // mysqlConnection.end();
   });
 });
@@ -653,7 +653,7 @@ app.post("/ins/product", upload.array("img", 2), (req, res) => {
       console.log(err);
     }
   );
-  client.end();
+  // client.end();
   return res.json("Inserted Successfully");
 
   // mysqlConnection.end();
@@ -681,7 +681,7 @@ app.post("/ins/cate", (req, res) => {
       );
     }
   });
-  client.end();
+  // client.end();
   // mysqlConnection.end();
 });
 
@@ -694,7 +694,7 @@ app.post("/ins/sub-sub-cate", (req, res) => {
     console.log(err);
     return res.json("Insertion not Successful");
   });
-  client.end();
+  // client.end();
 });
 
 app.post("/ins/sub-cate", (req, res) => {
@@ -706,7 +706,7 @@ app.post("/ins/sub-cate", (req, res) => {
     console.log(err);
     return res.json("Insertion not Successful");
   });
-  client.end();
+  // client.end();
 });
 
 app.listen(PORT, () => {
