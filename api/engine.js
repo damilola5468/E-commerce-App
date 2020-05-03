@@ -101,7 +101,7 @@ app.post("/api/auth", (req, res) => {
 });
 
 app.get("/Products", function(req, res) {
-  var sql = "SELECT * FROM Products ORDER BY RAND();";
+  var sql = "SELECT * FROM Products ORDER BY id DESC;";
   client.query(sql, (err, result) => {
     if (err) console.log(err);
     console.log(result);
@@ -186,7 +186,7 @@ app.get("/SubCatpro/:id", (req, res) => {
   client.query(
     "SELECT * FROM products WHERE sub_category =" +
       req.params.id +
-      " ORDER BY RAND();",
+      " ORDER BY id DESC;",
     (err, rows, fields) => {
       if (!err) res.send(rows);
       else console.log(err);
@@ -200,7 +200,7 @@ app.get("/Sububpro/:id", (req, res) => {
   client.query(
     "SELECT * FROM products WHERE sub_category =" +
       req.params.id +
-      " ORDER BY RAND();",
+      " ORDER BY id DESC;",
     (err, rows, fields) => {
       if (!err) res.send(rows);
       else console.log(err);
@@ -211,7 +211,7 @@ app.get("/Sububpro/:id", (req, res) => {
 });
 
 app.post("/Products/", function(req, res) {
-  var sql = "SELECT * FROM products ORDER BY RAND();";
+  var sql = "SELECT * FROM products ORDER BY id DESC;";
   client.query(sql, (err, result) => {
     if (err) console.log(err);
     console.log(result);
@@ -397,7 +397,7 @@ app.get("/subsubcategory", function(req, res) {
 });
 
 app.post("/category", function(req, res) {
-  var sql = "SELECT * FROM category ORDER BY RAND();";
+  var sql = "SELECT * FROM category ORDER BY id DESC;";
   client.query(sql, (err, result) => {
     if (err) console.log(err);
     console.log(result);
@@ -408,7 +408,7 @@ app.post("/category", function(req, res) {
 });
 
 app.get("/category", function(req, res) {
-  var sql = "SELECT * FROM category ORDER BY RAND();";
+  var sql = "SELECT * FROM category ORDER BY id DESC;";
   client.query(sql, (err, result) => {
     if (err) console.log(err);
     console.log(result);
