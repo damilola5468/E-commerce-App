@@ -221,9 +221,9 @@ app.get("/Sububpro/:id", (req, res) => {
 
 app.post("/Products/", function(req, res) {
   client.connect();
-  var sql = "SELECT * FROM Products ORDER BY RAND();";
+  var sql = "SELECT * FROM products ORDER BY RAND();";
   client.query(sql, (err, result) => {
-    if (err) throw err;
+    if (err) console.log(err);
     console.log(result);
     res.send(result);
   });
@@ -234,7 +234,7 @@ app.post("/Products/", function(req, res) {
 app.get("/product/:name", (req, res) => {
   client.connect();
   client.query(
-    "SELECT * FROM Products WHERE name LIKE '%" + [req.params.name] + "%';",
+    "SELECT * FROM products WHERE name LIKE '%" + [req.params.name] + "%';",
     (err, rows, fields) => {
       if (!err) res.send(rows);
       else console.log(err);
@@ -247,7 +247,7 @@ app.get("/product/:name", (req, res) => {
 app.get("/pro/:id", (req, res) => {
   client.connect();
   client.query(
-    "Delete FROM Products WHERE id =" + req.params.id + ";",
+    "Delete FROM products WHERE id =" + req.params.id + ";",
     (err, rows, fields) => {
       if (!err) res.send(rows);
       else console.log(err);
@@ -262,7 +262,7 @@ app.get("/pro/:id", (req, res) => {
 app.get("/product_id/:id", (req, res) => {
   client.connect();
   client.query(
-    "Select * FROM Products WHERE id =" + req.params.id + ";",
+    "Select * FROM products WHERE id =" + req.params.id + ";",
     (err, rows, fields) => {
       if (!err) res.send(rows);
       else console.log(err);
@@ -385,7 +385,7 @@ app.get("/cat-count", (req, res) => {
 app.get("/catepro/:category", (req, res) => {
   client.connect();
   client.query(
-    "SELECT * FROM Products WHERE category = ?;",
+    "SELECT * FROM products WHERE category = ?;",
     [req.params.category],
     (err, rows, fields) => {
       if (!err) res.send(rows);
