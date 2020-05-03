@@ -14,19 +14,13 @@ const multer = require("multer");
 // const upload multer({dest: '../src/components/image/'})
 const PORT = process.env.PORT || 7000;
 // const PORT = 7000;
-const { pg } = require("pg");
-// const mysqlConnection = new Pool({
-//   connectionString: process.env.DATABASE_URL,
-//   ssl: true
-// });
-
-var mysqlConnection = knex({
-  client: "pg",
-  connection: {
-    connectionString: process.env.DATABASE_URL,
-    ssl: true
-  }
+const { Pool } = require('pg');
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
 });
+
+
 
 if (process.env.NODE_ENV === "production") {
   // Serve any static files
@@ -39,17 +33,18 @@ if (process.env.NODE_ENV === "production") {
 }
 app.use(express.static("public"));
 
-mysqlConnection.connect(err => {
-  if (!err) {
-    console.log("Db Connection created!");
-  } else {
-    console.log("Db Connection Failed: !");
-  }
-});
+// mysqlConnection.connect(err => {
+//   if (!err) {
+//     console.log("Db Connection created!");
+//   } else {
+//     console.log("Db Connection Failed: !");
+//   }
+// });
 
 app.post("/c/products", (req, res) => {
+  const client = await pool.connect()
   var sql = "SELECT * FROM Products ";
-  mysqlConnection.query(sql, (err, result) => {
+  await client.query(sql, (err, result) => {
     console.log(err);
     let products = [],
       id = null;
@@ -64,12 +59,13 @@ app.post("/c/products", (req, res) => {
     }
     return res.json(products);
   });
+  client.release();
   // mysqlConnection.end();
 });
 
 app.post("/api/auth", (req, res) => {
   var sql = "SELECT * FROM custormers";
-  mysqlConnection.query(sql, (err, result) => {
+  await client.query(sql, (err, result) => {
     console.log(err);
     let user = result.filter(user => {
       return (
@@ -94,86 +90,94 @@ app.post("/api/auth", (req, res) => {
       return res.status("409").json("Authentication failed. User not found.");
     }
   });
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/Products", function(req, res) {
   var sql = "SELECT * FROM Products ORDER BY RAND()";
-  mysqlConnection.query(sql, (err, result) => {
+  await client.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
     res.send(result);
   });
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/Type", function(req, res) {
   var sql = "SELECT * FROM type";
-  mysqlConnection.query(sql, (err, result) => {
+  await client.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
     res.send(result);
   });
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/SubCat/:id", (req, res) => {
-  mysqlConnection.query(
+  await client.query(
     "SELECT * FROM subcategory WHERE cat_id =" + req.params.id + "",
     (err, rows, fields) => {
       if (!err) res.send(rows);
       else console.log(err);
     }
   );
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/SububCat/:id", (req, res) => {
-  mysqlConnection.query(
+  await client.query(
     "SELECT * FROM sububcategory WHERE sub_category_id =" + req.params.id + "",
     (err, rows, fields) => {
       if (!err) res.send(rows);
       else console.log(err);
     }
   );
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/Sububproduct/:id", (req, res) => {
-  mysqlConnection.query(
+  await client.query(
     "SELECT * FROM products WHERE subub_category_id =" + req.params.id + "",
     (err, rows, fields) => {
       if (!err) res.send(rows);
       else console.log(err);
     }
   );
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/allSububproduct/:id", (req, res) => {
-  mysqlConnection.query(
+  await client.query(
     "SELECT * FROM products WHERE subub_category_id =" + req.params.id + "",
     (err, rows, fields) => {
       if (!err) res.send(rows);
       else console.log(err);
     }
   );
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/subSubCat/:id", (req, res) => {
-  mysqlConnection.query(
+  await client.query(
     "SELECT * FROM sububcategory WHERE sub_category_id =" + req.params.id + "",
     (err, rows, fields) => {
       if (!err) res.send(rows);
       else console.log(err);
     }
   );
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/SubCatpro/:id", (req, res) => {
-  mysqlConnection.query(
+  await client.query(
     "SELECT * FROM products WHERE sub_category =" +
       req.params.id +
       " ORDER BY RAND()",
@@ -182,11 +186,12 @@ app.get("/SubCatpro/:id", (req, res) => {
       else console.log(err);
     }
   );
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/Sububpro/:id", (req, res) => {
-  mysqlConnection.query(
+  await client.query(
     "SELECT * FROM products WHERE sub_category =" +
       req.params.id +
       " ORDER BY RAND()",
@@ -195,78 +200,84 @@ app.get("/Sububpro/:id", (req, res) => {
       else console.log(err);
     }
   );
+  client.release();
   // mysqlConnection.end();
 });
 
 app.post("/Products/", function(req, res) {
   var sql = "SELECT * FROM Products ORDER BY RAND()";
-  mysqlConnection.query(sql, (err, result) => {
+  await client.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
     res.send(result);
   });
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/product/:name", (req, res) => {
-  mysqlConnection.query(
+  await client.query(
     "SELECT * FROM Products WHERE name LIKE '%" + [req.params.name] + "%'",
     (err, rows, fields) => {
       if (!err) res.send(rows);
       else console.log(err);
     }
   );
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/pro/:id", (req, res) => {
-  mysqlConnection.query(
+  await client.query(
     "Delete FROM Products WHERE id =" + req.params.id + "",
     (err, rows, fields) => {
       if (!err) res.send(rows);
       else console.log(err);
     }
   );
+  client.release();
   // mysqlConnection.end();
 });
 
 //
 
 app.get("/product_id/:id", (req, res) => {
-  mysqlConnection.query(
+  await client.query(
     "Select * FROM Products WHERE id =" + req.params.id + "",
     (err, rows, fields) => {
       if (!err) res.send(rows);
       else console.log(err);
     }
   );
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/pay/:email", (req, res) => {
-  mysqlConnection.query(
+  await client.query(
     "SELECT * FROM custormers WHERE email ='" + req.params.email + "'",
     (err, rows, fields) => {
       if (!err) res.send(rows);
       else console.log(err);
     }
-  );
+  );  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/cat/:id", (req, res) => {
-  mysqlConnection.query(
+  await client.query(
     "Delete FROM category WHERE id =" + req.params.id + "",
     (err, rows, fields) => {
       if (!err) res.send(rows);
       else console.log(err);
     }
   );
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/subcat/del/:id", (req, res) => {
-  mysqlConnection.query(
+  await client.query(
     "Delete FROM subcategory WHERE id =" + req.params.id + "",
     (err, rows, fields) => {
       if (!err) res.send(rows);
@@ -277,19 +288,19 @@ app.get("/subcat/del/:id", (req, res) => {
 });
 
 app.get("/sububcat/del/:id", (req, res) => {
-  mysqlConnection.query(
+  await client.query(
     "Delete FROM sububcategory WHERE id =" + req.params.id + "",
     (err, rows, fields) => {
       if (!err) res.json("true");
       else console.log(err);
     }
   );
-
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/custom", (req, res) => {
-  mysqlConnection.query("SELECT * FROM custormers", (err, rows, fields) => {
+  await client.query("SELECT * FROM custormers", (err, rows, fields) => {
     if (!err) res.send(rows);
     else console.log(err);
   });
@@ -297,7 +308,7 @@ app.get("/custom", (req, res) => {
 });
 
 // app.get("/custom-count", (req, res) => {
-//   mysqlConnection.query(
+//   await client.query(
 //     "SELECT COUNT(*) FROM custormers",
 //     (err, rows, fields) => {
 //       if (!err) res.send(rows);
@@ -308,40 +319,43 @@ app.get("/custom", (req, res) => {
 // });
 
 app.get("/custom-count", (req, res) => {
-  mysqlConnection.query(
+  await client.query(
     "SELECT COUNT(*) as total FROM custormers",
     (err, rows, fields) => {
       if (!err) res.json(rows[0].total);
       else console.log(err);
     }
   );
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/product-count", (req, res) => {
-  mysqlConnection.query(
+  await client.query(
     "SELECT COUNT(*) as total FROM products",
     (err, rows, fields) => {
       if (!err) res.json(rows[0].total);
       else console.log(err);
     }
   );
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/cat-count", (req, res) => {
-  mysqlConnection.query(
+  await client.query(
     "SELECT COUNT(*) as total FROM category",
     (err, rows, fields) => {
       if (!err) res.json(rows[0].total);
       else console.log(err);
     }
   );
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/catepro/:category", (req, res) => {
-  mysqlConnection.query(
+  await client.query(
     "SELECT * FROM Products WHERE category = ?",
     [req.params.category],
     (err, rows, fields) => {
@@ -349,51 +363,56 @@ app.get("/catepro/:category", (req, res) => {
       else console.log(err);
     }
   );
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/subcategory", function(req, res) {
   var sql = "SELECT * FROM subcategory";
-  mysqlConnection.query(sql, (err, result) => {
+  await client.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
     res.send(result);
   });
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/subsubcategory", function(req, res) {
   var sql = "SELECT * FROM sububcategory";
-  mysqlConnection.query(sql, (err, result) => {
+  await client.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
     res.send(result);
   });
+  client.release();
   // mysqlConnection.end();
 });
 
 app.post("/category", function(req, res) {
   var sql = "SELECT * FROM category ORDER BY RAND()";
-  mysqlConnection.query(sql, (err, result) => {
+  await client.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
     res.send(result);
   });
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/category", function(req, res) {
   var sql = "SELECT * FROM category ORDER BY RAND()";
-  mysqlConnection.query(sql, (err, result) => {
+  await client.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
     res.send(result);
   });
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/cat-admin-list/:id", (req, res) => {
-  mysqlConnection.query(
+  await client.query(
     "SELECT * FROM category WHERE id = ?",
     [req.params.id],
     (err, rows, fields) => {
@@ -401,11 +420,12 @@ app.get("/cat-admin-list/:id", (req, res) => {
       else console.log(err);
     }
   );
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/subsub-admin-list/:id", (req, res) => {
-  mysqlConnection.query(
+  await client.query(
     "SELECT * FROM sububcategory WHERE id = ?",
     [req.params.id],
     (err, rows, fields) => {
@@ -413,11 +433,12 @@ app.get("/subsub-admin-list/:id", (req, res) => {
       else console.log(err);
     }
   );
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/subub-admin-list/:id", (req, res) => {
-  mysqlConnection.query(
+  await client.query(
     "SELECT * FROM subcategory WHERE id = ?",
     [req.params.id],
     (err, rows, fields) => {
@@ -425,11 +446,12 @@ app.get("/subub-admin-list/:id", (req, res) => {
       else console.log(err);
     }
   );
+  client.release();
   // mysqlConnection.end();
 });
 
 app.get("/product/:id", (req, res) => {
-  mysqlConnection.query(
+  await client.query(
     "SELECT * FROM products WHERE id = ?",
     [req.params.id],
     (err, rows, fields) => {
@@ -437,13 +459,14 @@ app.get("/product/:id", (req, res) => {
       else console.log(err);
     }
   );
+  client.release();
   // mysqlConnection.end();
 });
 
 app.post("/delivery", (req, res) => {
   let post = req.body;
 
-  mysqlConnection.query(
+  await client.query(
     "SELECT count(*) as tiol from delivery_information WHERE email = ?",
     [post.email],
     (err, result, fields) => {
@@ -453,7 +476,7 @@ app.post("/delivery", (req, res) => {
 
         var sql =
           "UPDATE delivery_information SET firstname=?,lastname=? ,email=?,phone=?,phone_2=?,address=?,user_id=? WHERE email = ?";
-        mysqlConnection.query(
+        await client.query(
           sql,
           [
             post.firstname,
@@ -475,7 +498,7 @@ app.post("/delivery", (req, res) => {
       } else {
         var sql =
           "INSERT INTO delivery_information (firstname, lastname, email, phone, phone_2, address,user_id) VALUES (?,?,?,?,?,?,?)";
-        mysqlConnection.query(
+        await client.query(
           sql,
           [
             post.firstname,
@@ -492,6 +515,7 @@ app.post("/delivery", (req, res) => {
             console.log(err);
           }
         );
+        client.release();
         return res.json("Ordering Step 1 Successful");
       }
     }
@@ -499,7 +523,7 @@ app.post("/delivery", (req, res) => {
 });
 
 // app.delete("/product/:id", (req, res) => {
-//   mysqlConnection.query(
+//   await client.query(
 //     "DELETE FROM product WHERE id = ?",
 //     [req.params.id],
 //     (err, rows, fields) => {
@@ -516,7 +540,7 @@ app.post("/delivery", (req, res) => {
 //     " and phone =" +
 //     req.phone +
 //     "";
-//   mysqlConnection.query(sql, (err, rows, fields) => {
+//   await client.query(sql, (err, rows, fields) => {
 //     if (rows)
 //       return res.status("405").json("User with email and phone already exist.");
 //     console.log(err, req.email);
@@ -537,11 +561,11 @@ app.post("/check", (req, res) => {
     post.phone +
     "'";
 
-  mysqlConnection.query(sql3, (err, result, fields) => {
+  await client.query(sql3, (err, result, fields) => {
     if (result[0].total3 === 1) {
       return res.json("Signup Failed Email or Phone Already Exist!!");
     }
-    mysqlConnection.query(sql2, (err, result, fields) => {
+    await client.query(sql2, (err, result, fields) => {
       // console.log(result[0].total);
       if (result[0].total2 === 1) {
         return res.json("Signup Failed Email or Phone Already Exist!!");
@@ -549,7 +573,7 @@ app.post("/check", (req, res) => {
         let post = req.body;
         var sql =
           "INSERT INTO custormers (firstname, lastname, email, phone, password, address) VALUES (?,?,?,?,?,?)";
-        mysqlConnection.query(
+        await client.query(
           sql,
           [
             post.firstname,
@@ -568,6 +592,7 @@ app.post("/check", (req, res) => {
         return res.json("Signup Successful!!!");
       }
     });
+    client.release();
     // mysqlConnection.end();
   });
 });
@@ -600,7 +625,7 @@ app.post("/ins/product", upload.array("img", 2), (req, res) => {
   var sql =
     "INSERT INTO products (name, category, available_quantity, description,image_path, price,image_path_2, size, type, sub_category, subub_category_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
-  mysqlConnection.query(
+  await client.query(
     sql,
     [
       body.name,
@@ -621,8 +646,10 @@ app.post("/ins/product", upload.array("img", 2), (req, res) => {
       console.log(err);
     }
   );
+  client.release();
   return res.json("Inserted Successfully");
 
+  
   // mysqlConnection.end();
 });
 
@@ -630,14 +657,14 @@ app.post("/ins/cate", (req, res) => {
   let body = req.body;
 
   var cg = "SELECT count(*) as tl from category";
-  mysqlConnection.query(cg, (err, result, fields) => {
+  await client.query(cg, (err, result, fields) => {
     console.log(result.tl);
     if (result[0].tl === 8) {
       return res.json("Category Limit is 8!!!");
     } else {
       var sql =
         "INSERT INTO category (category_name, description) VALUES (?,?)";
-      mysqlConnection.query(
+      await client.query(
         sql,
         [body.category, body.description],
         (err, rows, fields) => {
@@ -648,7 +675,7 @@ app.post("/ins/cate", (req, res) => {
       );
     }
   });
-
+  client.release();
   // mysqlConnection.end();
 });
 
@@ -656,7 +683,7 @@ app.post("/ins/sub-sub-cate", (req, res) => {
   let body = req.body;
 
   var sql = "INSERT INTO sububcategory (name, sub_category_id) VALUES (?,?)";
-  mysqlConnection.query(
+  await client.query(
     sql,
     [body.name, body.sub_cat_id],
     (err, rows, fields) => {
@@ -665,13 +692,14 @@ app.post("/ins/sub-sub-cate", (req, res) => {
       return res.json("Insertion not Successful");
     }
   );
+  client.release();
 });
 
 app.post("/ins/sub-cate", (req, res) => {
   let body = req.body;
 
   var sql = "INSERT INTO subcategory (sub_cat_name, cat_id) VALUES (?,?)";
-  mysqlConnection.query(
+  await client.query(
     sql,
     [body.sub_cat_name, body.cat_id],
     (err, rows, fields) => {
@@ -680,6 +708,7 @@ app.post("/ins/sub-cate", (req, res) => {
       return res.json("Insertion not Successful");
     }
   );
+  client.release();
 });
 
 app.listen(PORT, () => {
