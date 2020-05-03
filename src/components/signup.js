@@ -65,8 +65,8 @@ export default class Login extends React.Component {
         <br />
         <br />
 
-        <div className="container  mb-5">
-          <h5 style={mn} className="ml-4 rer">
+        <div className="container llk2 mb-5">
+          <h5 style={mn} className="ml-3 rer">
             Signup &nbsp; <FaLock />
           </h5>
           <hr />

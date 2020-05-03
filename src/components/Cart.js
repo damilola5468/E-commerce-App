@@ -4,7 +4,7 @@ import { getCartProducts } from "../repository";
 import CartItem from "./CartItem";
 import "bootstrap/dist/css/bootstrap.min.css";
 import swal from "sweetalert";
-import Pagination from './pagination';
+import Pagination from "./pagination";
 import {
   Card,
   Accordion,
@@ -23,8 +23,7 @@ import {
   FaStore,
   FaSeedling,
   FaSearch,
-  FaLock,
-
+  FaLock
 } from "react-icons/fa";
 export default class Cart extends React.Component {
   constructor(props) {
@@ -33,28 +32,24 @@ export default class Cart extends React.Component {
       products: [],
       total: 0,
       pageOfItems: [],
-      qty:""
+      qty: ""
     };
-        this.onChangePage = this.onChangePage.bind(this);
+    this.onChangePage = this.onChangePage.bind(this);
   }
 
-
   onChangePage(pageOfItems) {
-         // update state with new page of items
-         this.setState({ pageOfItems: pageOfItems });
-
-     }
-
+    // update state with new page of items
+    this.setState({ pageOfItems: pageOfItems });
+  }
 
   componentWillMount() {
-
     let cart = localStorage.getItem("cart");
     if (!cart) return;
     getCartProducts(cart).then(products => {
       let total = 0;
       for (var i = 0; i < products.length; i++) {
-          let rt = parseInt(products[i].qty.split("-")[0]);
-        total += products[i].price * rt ;
+        let rt = parseInt(products[i].qty.split("-")[0]);
+        total += products[i].price * rt;
       }
       this.setState({ products, total });
     });
@@ -79,7 +74,9 @@ export default class Cart extends React.Component {
           let cart = JSON.parse(localStorage.getItem("cart"));
           delete cart[product.id.toString()];
           localStorage.setItem("cart", JSON.stringify(cart));
-          let total = this.state.total - parseInt(product.qty.split("-")[0]) * product.price;
+          let total =
+            this.state.total -
+            parseInt(product.qty.split("-")[0]) * product.price;
           this.setState({ products, total });
 
           swal("Product has been removed!");
@@ -87,17 +84,13 @@ export default class Cart extends React.Component {
           break;
 
         default:
-
           break;
       }
     });
   };
 
-
-    addToCart =  product => {
-    let products = this.state.products.filter(
-      item => item.id !== product.id
-    );
+  addToCart = product => {
+    let products = this.state.products.filter(item => item.id !== product.id);
     let cart = localStorage.getItem("cart")
       ? JSON.parse(localStorage.getItem("cart"))
       : {};
@@ -106,7 +99,7 @@ export default class Cart extends React.Component {
     cart[id] = cart[id] ? cart[id] : 0;
     let qty = parseInt(cart[id]) + 1;
     // alert(qty);
-      let size = cart[id].split("-")[1];
+    let size = cart[id].split("-")[1];
     if (product.available_quantity < qty) {
       swal(
         "Not Enough Item",
@@ -114,53 +107,49 @@ export default class Cart extends React.Component {
         "error"
       );
     } else {
-      cart[id] = qty+"-"+size ;
+      cart[id] = qty + "-" + size;
       let total = this.state.total + 1 * product.price;
-      this.setState({...products, total });
+      this.setState({ ...products, total });
       localStorage.setItem("cart", JSON.stringify(cart));
       swal("Added +1 To Cart Item!", "Product Added", "success");
     }
+  };
 
+  removefromCart = product => {
+    let products = this.state.products.filter(item => item.id !== product.id);
+    let cart = localStorage.getItem("cart")
+      ? JSON.parse(localStorage.getItem("cart"))
+      : {};
 
-    };
-
-
-
-    removefromCart = product => {
-      let products = this.state.products.filter(
-        item => item.id !== product.id
+    let id = product.id.toString();
+    cart[id] = cart[id] ? cart[id] : 0;
+    let qty = parseInt(cart[id].split("-")[0]) - 1;
+    // alert(qty);
+    let size = cart[id].split("-")[1];
+    // alert(cart[id]);
+    if (product.available_quantity < qty) {
+      swal(
+        "Not Enough Item",
+        "We Don't Have Enough Of this Product Available!!",
+        "error"
       );
-      let cart = localStorage.getItem("cart")
-        ? JSON.parse(localStorage.getItem("cart"))
-        : {};
+    } else if (qty === 0) {
+      this.removeFromCart(product);
+    } else {
+      cart[id] = qty + "-" + size;
+      console.log(cart[id]);
+      let total = this.state.total - 1 * product.price;
+      // let product_qty = product.available_quantity - 1;
+      this.setState({ ...products, total });
+      swal(
+        "Removed 1 From Cart Item!",
+        "Product Removed From Cart!",
+        "success"
+      );
+    }
 
-      let id = product.id.toString();
-      cart[id] = cart[id] ? cart[id] : 0;
-      let qty = parseInt(cart[id].split("-")[0]) - 1;
-      // alert(qty);
-let size = cart[id].split("-")[1];
-      // alert(cart[id]);
-      if (product.available_quantity < qty) {
-        swal(
-          "Not Enough Item",
-          "We Don't Have Enough Of this Product Available!!",
-          "error"
-        );
-      }else if (qty === 0) {
-        this.removeFromCart(product);
-
-      } else {
-          cart[id] = qty+"-"+size ;
-        console.log(cart[id]);
-        let total = this.state.total - 1 * product.price;
-        // let product_qty = product.available_quantity - 1;
-        this.setState({...products, total });
-        swal("Removed 1 From Cart Item!", "Product Removed From Cart!", "success");
-      }
-
-      localStorage.setItem("cart", JSON.stringify(cart));
-    };
-
+    localStorage.setItem("cart", JSON.stringify(cart));
+  };
 
   clearCart = () => {
     localStorage.removeItem("cart");
@@ -170,38 +159,31 @@ let size = cart[id].split("-")[1];
 
   render() {
     const { products, total } = this.state;
-      const {pageOfItems,qty } = this.state;
+    const { pageOfItems, qty } = this.state;
 
     return (
       <div>
-
-
         <br />
         <br />
         <br />
 
         <div class="container ">
           <div class="row" id="products">
-
-
-           {pageOfItems.map(item =>
-             <CartItem
-               product={item}
-               qty={this.state.qty}
-               remove={this.removeFromCart}
-               remove2={this.removefromCart}
-               add={this.addToCart}
-               key={item.id}
-             />
-           )}
-
-
-
-
-
+            {pageOfItems.map(item => (
+              <CartItem
+                product={item}
+                qty={this.state.qty}
+                remove={this.removeFromCart}
+                remove2={this.removefromCart}
+                add={this.addToCart}
+                key={item.id}
+              />
+            ))}
           </div>
-          <Pagination items={this.state.products} onChangePage={this.onChangePage} />
-
+          <Pagination
+            items={this.state.products}
+            onChangePage={this.onChangePage}
+          />
 
           <div class="container">
             {products.length ? (
@@ -223,23 +205,25 @@ let size = cart[id].split("-")[1];
 
             {!products.length ? (
               <h3 className="text-dark">
-                <b className="rer">No item on the cart!!!</b>
-                <hr/>
+                <b className="rer il">No item on the cart!!!</b>
+                <hr />
               </h3>
             ) : (
               ""
             )}
 
-
             <Link to="/checkout">
-              <button className="btn btn-sm btn-outline-secondary float-right rer"   style={{fontSize: "15px",  }}>
+              <button
+                className="btn btn-sm btn-outline-secondary float-right rer"
+                style={{ fontSize: "15px" }}
+              >
                 Checkout
               </button>
             </Link>
             <button
               className="btn btn-outline-secondary btn-sm float-left rer"
               onClick={this.clearCart}
-              style={{ marginRight: "10px", fontSize: "15px",  }}
+              style={{ marginRight: "10px", fontSize: "15px" }}
             >
               Clear Cart
             </button>
@@ -272,7 +256,6 @@ var uyw = {
   // textAlign:"center",
   fontSize: "15px"
 };
-
 
 var nav = {
   backgroundColor: "#f7f7fde0",

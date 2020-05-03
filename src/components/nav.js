@@ -53,7 +53,7 @@ class Navigator extends Component {
           variant="dark"
         >
           <Link to="/" style={{ textDecoration: "none" }}>
-            <Nav className="ml-3 mt-2">
+            <Nav className=" lt mt-2">
               <h1
                 class="link mt-1"
                 style={{
@@ -90,19 +90,19 @@ class Navigator extends Component {
                 eventKey={2}
                 href="/"
                 style={io}
-                className="text-dark mt-4"
+                className="text-dark jj "
               >
                 <h4 className="lin ">
                   <b className="lin">Market</b>
                 </h4>
               </Nav.Link>
-              <Nav.Link href="/cart" style={io} className="text-dark  mt-4">
+              <Nav.Link href="/cart" style={io} className="text-dark jj  ">
                 <h4 className="lin">
                   <b className="lin">Cart </b>&nbsp;
                 </h4>
               </Nav.Link>
 
-              <Nav.Link href="/checkout" style={io} className="text-dark mt-4">
+              <Nav.Link href="/checkout" style={io} className="text-dark jj">
                 <h4 className="lin" id="hod">
                   <b className="lin">Checkout</b>
                 </h4>{" "}
@@ -114,7 +114,7 @@ class Navigator extends Component {
                   eventKey={2}
                   href="/login"
                   style={io}
-                  className="text-dark mt-4"
+                  className="text-dark jj jkl"
                 >
                   <h4 className="lin">
                     <b className="lin">Login</b>
@@ -126,7 +126,7 @@ class Navigator extends Component {
                   eventKey={2}
                   onClick={this.logOut}
                   style={io}
-                  className="text-dark mt-4"
+                  className="text-dark jj"
                 >
                   <b className="lin">
                     <h4>
@@ -155,7 +155,7 @@ var col = {
 };
 
 var nav = {
-  backgroundColor: "#f7f7fde0"
+  backgroundColor: "#f0f0f8ec"
 };
 var img = {
   width: "180px"

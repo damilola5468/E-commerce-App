@@ -4,6 +4,9 @@ src: url(Noir_regular.woff);
 }
 
 
+.lt{
+  margin-left: 70px;
+}
 
 h6 .cte {
   text-align: center;
@@ -25,7 +28,7 @@ h6 .cte {
   margin-left: 60px;
 }
 .side{
-  background-color:#fdfdfe;
+  background-color:;
   height: 440px;
   left:0px;
   position: absolute;
@@ -81,6 +84,10 @@ word-spacing:  7877px;
 .kkw{
   margin-top: -20px;
   margin-left: -0px;
+}
+
+.jj{
+  margin-top: 30px;
 }
 
 .nkk{
@@ -438,7 +445,7 @@ margin-left: 7px;
   font-size: 16px;
 }
 .nav{
-  background-color: #f7f7fde0;
+  background-color: #f0f0f8ec;
   height: 68px;
 }
 
@@ -808,6 +815,23 @@ z-index: 1;
 
 
 @media only screen and (max-width: 414px) {
+  .llk{
+    margin-left: -20px;
+  }
+  .llk2{
+    margin-left: -5px;
+  }
+  .lt{
+    margin-left: 7px;
+  }
+  .jj{
+    margin-top: 5px;
+    margin-left: -10px
+  }
+
+  .jkl{
+    margin-top: -15px;
+  }
   .ttui{
     width: 207px;
   }
@@ -822,6 +846,9 @@ z-index: 1;
    top:-5px;
    left: 65px;
     }
+    .il{
+      font-size: 18px;
+    }
     .ico{
       position: relative;
       top:-14px;
@@ -835,7 +862,7 @@ z-index: 1;
   height: 5px;
 }
     .rer{
-      font-size:16px;
+      font-size:19px;
       position: relative;
       left:-9px;
       top:-10px;
@@ -893,6 +920,23 @@ z-index: 1;
 
 
 @media only screen and (max-width: 411px) {
+  .llk{
+    margin-left: -35px;
+  }
+  .llk2{
+    margin-left: -20px;
+  }
+  .lt{
+    margin-left: 0px;
+  }
+  .jj{
+    margin-top: 5px;
+    margin-left: -15px;
+  }
+
+  .jkl{
+    margin-top: -15px;
+  }
   .ttui{
     width: 205px;
   }
@@ -912,6 +956,9 @@ z-index: 1;
     font-size: 19px;
     left: 10px;
   }
+  .il{
+    font-size: 18px;
+  }
   .sio{
    position:absolute;
    width: 325px;
@@ -929,12 +976,14 @@ z-index: 1;
       height: 80px;
     }
     .rer{
-      font-size:16px;
+      font-size:21px;
       position: relative;
       left:9px;
       top:-10px;
     }
-
+.jml{
+  font-size: 22px;
+}
     #edc{
     z-index: 1;
     position: absolute;
@@ -986,6 +1035,24 @@ z-index: 1;
 
 
 @media only screen and (max-width: 375px) {
+  .llk{
+    margin-left: -11px;
+  }
+  .llk2{
+    margin-left: 5px;
+  }
+  .lt{
+    margin-left: 5px;
+  }
+  .jj{
+    margin-top: 5px;
+    margin-left: -10px;
+  }
+
+  .jkl{
+    margin-top: -15px;
+  }
+
   .nav{
     height: 60px;
   }
@@ -1036,7 +1103,7 @@ z-index: 1;
       margin-left: 7px;
   }
   .rer{
-    font-size:13px;
+    font-size:23px;
     position: absolute;
     left:-130px;
 
@@ -1089,8 +1156,23 @@ left: -1px;
 
 
 @media only screen and (max-width: 360px) {
+  .llk{
+    margin-left: -23px;
+  }
 
+  .llk2{
+    margin-left: -7px;
+  }
+  .lt{
+    margin-left: 5px;
+  }
+  .jj{
+    margin-top: 5px;
+  }
 
+  .jkl{
+    margin-top: -15px;
+  }
   #edc{
   z-index: 1;
   position: absolute;
@@ -1138,7 +1220,7 @@ left: -1px;
       left: 10px;
     }
     .rer{
-      font-size:14px;
+      font-size:18px;
       position: relative;
       left:-0px;
       top:-10px;
@@ -1159,6 +1241,15 @@ left: -1px;
 }
 
 @media only screen and (max-width: 320px) {
+  .lt{
+    margin-left: 5px;
+  }
+  .jj{
+    margin-top: -5px;
+  }
+  .yth{
+    margin-top: -25px;
+  }
   .ttui{
     width: 160px;
   }
@@ -1175,7 +1266,7 @@ left: -1px;
   }
 
   .rer{
-    font-size:13px;
+    font-size:16px;
     position: relative;
     left:-10px;
   }
@@ -1229,7 +1320,7 @@ left: -1px;
    left: 35px;
     }
     .rer{
-      font-size:13px;
+      font-size:16px;
       position: relative;
       left:9px;
       top:-10px;
