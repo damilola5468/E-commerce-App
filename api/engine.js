@@ -23,16 +23,16 @@ const pool = new Pool({
 
 if (process.env.NODE_ENV === "production") {
   // Serve any static files
-  app.use(express.static(path.join(__dirname, "../public")));
+  app.use(express.static(path.join(__dirname, "../build")));
 
   // Handle React routing, return all requests to React app
   app.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public", "index.html"));
+    res.sendFile(path.join(__dirname, "../build", "index.html"));
   });
 }
 // app.use(express.static("public"));
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/public/index.html"));
+  res.sendFile(path.join(__dirname + "../build/index.html"));
 });
 // mysqlConnection.connect(err => {
 //   if (!err) {
@@ -41,6 +41,10 @@ app.get("*", (req, res) => {
 //     console.log("Db Connection Failed: !");
 //   }
 // });
+
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
 
 app.post("/c/products", (req, res) => {
   const client = pool.connect();
