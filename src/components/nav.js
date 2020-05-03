@@ -53,7 +53,7 @@ class Navigator extends Component {
           variant="dark"
         >
           <Link to="/" style={{ textDecoration: "none" }}>
-            <Nav className=" lt mt-2">
+            <Nav className="lt mt-2">
               <h1
                 class="link mt-1"
                 style={{

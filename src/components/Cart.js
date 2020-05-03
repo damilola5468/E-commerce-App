@@ -167,7 +167,7 @@ export default class Cart extends React.Component {
         <br />
         <br />
 
-        <div class="container ">
+        <div class="container pol ">
           <div class="row" id="products">
             {pageOfItems.map(item => (
               <CartItem

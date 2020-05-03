@@ -482,8 +482,8 @@ export default class ProductList extends React.Component {
                               fontFamily: "noir"
                             }}
                           >
-                            <b>Loading Available Category!!! </b>&nbsp; &nbsp;
-                            &nbsp;
+                            <b class="rw">Loading Available Category!!! </b>
+                            &nbsp; &nbsp; &nbsp;
                           </h2>
                         ) : (
                           category.map((category, index) => (

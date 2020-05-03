@@ -4,3 +4,57 @@ background-repeat:  repeat-x;
 opacity: 0.9;
  
 }
+
+
+
+
+@media only screen and (max-width: 414px) {
+
+    .gyu{
+  
+      background-image: url("");
+    }
+  
+  
+  }
+  
+  @media only screen and (max-width: 411px) {
+  
+    .gyu{
+  
+      background-image: url("");
+    }
+  
+  
+  }
+  
+  @media only screen and (max-width: 375px) {
+  
+    .gyu{
+  
+      background-image: url("");
+    }
+  
+  
+  }
+  
+  @media only screen and (max-width: 360px) {
+  
+    .gyu{
+  
+      background-image: url("");
+    }
+  
+  
+  }
+  
+  @media only screen and (max-width: 320px) {
+  
+    .gyu{
+  
+      background-image: url("");
+    }
+  
+  
+  }
+  

@@ -5,7 +5,7 @@ src: url(Noir_regular.woff);
 
 
 .lt{
-  margin-left: 70px;
+  margin-left: 30px;
 }
 
 h6 .cte {
@@ -914,6 +914,10 @@ z-index: 1;
     .ioo{
       margin-left: 0px;
     }
+    .gyu{
+
+
+    }
 
 }
 
@@ -1030,6 +1034,10 @@ z-index: 1;
     }
     .ioo{
       margin-left:  0px;
+    }
+    .gyu{
+
+
     }
 }
 
@@ -1152,6 +1160,10 @@ left: -1px;
     .ioo{
       margin-left:  0px;
     }
+    .gyu{
+
+
+    }
 }
 
 
@@ -1238,17 +1250,25 @@ left: -1px;
     .ioo{
       margin-left: 0px;
     }
+    .gyu{
+
+
+    }
 }
 
 @media only screen and (max-width: 320px) {
   .lt{
-    margin-left: 5px;
+    margin-left: 10px;
   }
   .jj{
-    margin-top: -5px;
+    margin-top: 5px;
+    margin-left: -3px;
   }
-  .yth{
-    margin-top: -25px;
+  .pol{
+    margin-left: -10px;
+  }
+  .jkl{
+    margin-top: -15px;
   }
   .ttui{
     width: 160px;
@@ -1257,6 +1277,11 @@ left: -1px;
     width: 80px;
     height: 80px;
     margin-left: -10px;
+  }
+  .rw{
+    font-size:12px;
+    margin-left: 25px;
+  
   }
 
   .hovc{
@@ -1273,7 +1298,8 @@ left: -1px;
 .ico{
   font-size: 15px;
   position: absolute;
-  top:20px;
+  top:-3px;
+  left:-48px;
 }
 
 
@@ -1316,8 +1342,8 @@ left: -1px;
   .sio{
    position:absolute;
    width: 287px;
-   top:-15px;
-   left: 35px;
+   top:-32px;
+   left: 39px;
     }
     .rer{
       font-size:16px;
@@ -1339,4 +1365,8 @@ left: -1px;
       margin-left:  0px;
     }
 
+    .gyu{
+
+
+    }
 }

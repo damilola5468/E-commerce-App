@@ -10,16 +10,53 @@ button:focus {outline:0;}
   font-size: 16px;
 }
 
-@media only screen and (max-width: 600px) {
+
+
+@media only screen and (max-width: 414px) {
 
   .gyu{
-  background-image: url("./image/hio.jpg");
-  background-repeat:  repeat-x;
-  background-repeat:  repeat-y;
-  opacity: 0.9;
-  height: 100%;
-z-index: 1;
 
+    background-image: url("");
+  }
+
+
+}
+
+@media only screen and (max-width: 411px) {
+
+  .gyu{
+
+    background-image: url("");
+  }
+
+
+}
+
+@media only screen and (max-width: 375px) {
+
+  .gyu{
+
+    background-image: url("");
+  }
+
+
+}
+
+@media only screen and (max-width: 360px) {
+
+  .gyu{
+
+    background-image: url("");
+  }
+
+
+}
+
+@media only screen and (max-width: 320px) {
+
+  .gyu{
+
+    background-image: url("");
   }
 
 
