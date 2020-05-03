@@ -104,7 +104,7 @@ app.get("/Products", function(req, res) {
   client.connect();
   var sql = "SELECT * FROM Products ORDER BY RAND();";
   client.query(sql, (err, result) => {
-    if (err) throw err;
+    if (err) console.log(err);
     console.log(result);
     res.send(result);
   });
@@ -116,7 +116,7 @@ app.get("/Type", function(req, res) {
   client.connect();
   var sql = "SELECT * FROM type;";
   client.query(sql, (err, result) => {
-    if (err) throw err;
+    if (err) console.log(err);
     console.log(result);
     res.send(result);
   });
@@ -400,7 +400,7 @@ app.get("/subcategory", function(req, res) {
   client.connect();
   var sql = "SELECT * FROM subcategory;";
   client.query(sql, (err, result) => {
-    if (err) throw err;
+    if (err) console.log(err);
     console.log(result);
     res.send(result);
   });
@@ -412,7 +412,7 @@ app.get("/subsubcategory", function(req, res) {
   client.connect();
   var sql = "SELECT * FROM sububcategory;";
   client.query(sql, (err, result) => {
-    if (err) throw err;
+    if (err) console.log(err);
     console.log(result);
     res.send(result);
   });
@@ -424,7 +424,7 @@ app.post("/category", function(req, res) {
   client.connect();
   var sql = "SELECT * FROM category ORDER BY RAND();";
   client.query(sql, (err, result) => {
-    if (err) throw err;
+    if (err) console.log(err);
     console.log(result);
     res.send(result);
   });
@@ -436,7 +436,7 @@ app.get("/category", function(req, res) {
   client.connect();
   var sql = "SELECT * FROM category ORDER BY RAND();";
   client.query(sql, (err, result) => {
-    if (err) throw err;
+    if (err) console.log(err);
     console.log(result);
     res.send(result);
   });
