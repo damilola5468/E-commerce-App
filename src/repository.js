@@ -49,7 +49,7 @@ export function category() {
 }
 
 export function Type() {
-  return axios.post(`${BASE_URL}/type`).then(response => response.data);
+  return axios.get(`${BASE_URL}/type`).then(response => response.data);
 }
 
 export function userpay(email) {
