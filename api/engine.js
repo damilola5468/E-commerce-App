@@ -24,11 +24,11 @@ const client = new Client({
 client.connect();
 
 // Serve any static files
-app.use(express.static(path.join(__dirname, "build")));
+app.use(express.static(path.join(__dirname, "../build/")));
 
 // Handle React routing, return all requests to React app
 app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
+  res.sendFile(path.join(__dirname, "../build/", "index.html"));
 });
 
 // app.use(express.static("public"));
