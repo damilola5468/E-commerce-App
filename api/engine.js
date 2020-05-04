@@ -558,22 +558,16 @@ app.post("/check", (req, res) => {
   // var sql =
   //   "SELECT count(*) as total FROM custormers where email='" +
   //   post.email + "'and phone ='" +  post.phone + "'";
-  var sql2 =
-    "SELECT count(*) as total2 FROM custormers where email='" +
-    post.email +
-    "';";
-  var sql3 =
-    "SELECT count(*) as total3 FROM custormers where phone='" +
-    post.phone +
-    "';";
+  var sql2 = "SELECT * FROM custormers where email='" + post.email + "';";
+  var sql3 = "SELECT * FROM custormers where phone='" + post.phone + "';";
 
-  client.query(sql3, (err, result, fields) => {
-    if (result[0].total3 === 1) {
+  client.query(sql3, (err, result3, fields) => {
+    if (result3 === true) {
       return res.json("Signup Failed Email or Phone Already Exist!!");
     }
-    client.query(sql2, (err, result, fields) => {
+    client.query(sql2, (err, result2, fields) => {
       // console.log(result[0].total);
-      if (result[0].total2 === 1) {
+      if (result2 === true) {
         return res.json("Signup Failed Email or Phone Already Exist!!");
       } else {
         let post = req.body;
