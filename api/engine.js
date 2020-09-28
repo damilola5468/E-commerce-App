@@ -23,13 +23,13 @@ const client = new Client({
 
 client.connect();
 
-// // Serve any static files
-// app.use(express.static(path.join(__dirname, "../build/")));
+// Serve any static files
+app.use(express.static(path.join(__dirname, "../build/")));
 
-// // Handle React routing, return all requests to React app
-// app.get("/*", function(req, res) {
-//   res.sendFile(path.join(__dirname, "../build/", "index.html"));
-// });
+// Handle React routing, return all requests to React app
+app.get("/*", function(req, res) {
+  res.sendFile(path.join(__dirname, "../build/", "index.html"));
+});
 
 
 // app.use(express.static("public"));
@@ -615,12 +615,12 @@ var upload = multer({
   storage: storage
 });
 
-app.post("/ins/product2",upload.array('img', 2), (req, res) => {
-  let files = req.files;
-  res.send(files[0].originalname);
-  var sql = 'UPDATE `products` SET `image_path` = 'jcjcj' WHERE `products`.`id` = 61';
+// app.post("/ins/product2",upload.array('img', 2), (req, res) => {
+//   let files = req.files;
+//   res.send(files[0].originalname);
+//   var sql = 'UPDATE `products` SET `image_path` = 'jcjcj' WHERE `products`.`id` = 61';
 
-});
+// });
 
 app.post("/ins/product", upload.array("img", 2), (req, res) => {
   let body = req.body;
