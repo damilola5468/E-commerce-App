@@ -44,7 +44,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "api": "nodemon api/engine.js"
+    "api": "nodemon index.js && api/engine.js"
   },
   "eslintConfig": {
     "extends": "react-app"
