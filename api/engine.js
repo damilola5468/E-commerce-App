@@ -31,6 +31,7 @@ app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "../build/", "index.html"));
 });
 
+
 // app.use(express.static("public"));
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname + "../build/index.html"));
@@ -42,6 +43,11 @@ app.get("*", function(req, res) {
 //     console.log("Db Connection Failed: !");
 //   }
 // });
+
+app.get("/", (req, res) => {
+  return res.render('/');
+});
+
 
 app.get("/hello", (req, res) => {
   res.send("Hello World");
