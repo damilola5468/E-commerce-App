@@ -37,14 +37,14 @@ client.connect();
 //   }
 // });
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello World");
+// });
 
 
-app.get("/hello", (req, res) => {
-  res.send("Hello World");
-});
+// app.get("/hello", (req, res) => {
+//   res.send("Hello World");
+// });
 
 app.post("/c/products", (req, res) => {
   var sql = "SELECT * FROM Products ";
