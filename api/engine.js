@@ -10,7 +10,7 @@ const jwt = require("jsonwebtoken");
 app.use(bodyParser.json());
 app.use(cors());
 const multer = require("multer");
-
+const router = express.Router();
 // const upload multer({dest: '../src/components/image/'})
 const PORT = process.env.PORT || 7000;
 // const PORT = 7000;
@@ -18,17 +18,18 @@ const { Client } = require("pg");
 
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
-  ssl: true
+  ssl: false
 });
 
 client.connect();
 
+// Serve any static files
 
 
-// app.use(express.static("public"));
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname + "../build/index.html"));
-// });
+app.use(express.static("build"));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "../build/index.html"));
+});
 // mysqlConnection.connect(err => {
 //   if (!err) {
 //     console.log("Db Connection created!");
@@ -37,16 +38,11 @@ client.connect();
 //   }
 // });
 
-// app.get("/", (req, res) => {
+// router.get("/hello", (req, res) => {
 //   res.send("Hello World");
 // });
 
-
-// app.get("/hello", (req, res) => {
-//   res.send("Hello World");
-// });
-
-app.post("/c/products", (req, res) => {
+router.post("/c/products", (req, res) => {
   var sql = "SELECT * FROM Products ";
   client.query(sql, (err, result) => {
     console.log(err);
@@ -67,7 +63,7 @@ app.post("/c/products", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.post("/api/auth", (req, res) => {
+router.post("/api/auth", (req, res) => {
   var sql = "SELECT * FROM custormers";
   client.query(sql, (err, result) => {
     console.log(err);
@@ -98,7 +94,7 @@ app.post("/api/auth", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.get("/Products", function(req, res) {
+router.get("/Products", function(req, res) {
   var sql = "SELECT * FROM Products ORDER BY id DESC;";
   client.query(sql, (err, result) => {
     if (err) console.log(err);
@@ -109,7 +105,7 @@ app.get("/Products", function(req, res) {
   // mysqlConnection.end();
 });
 
-app.get("/Type", function(req, res) {
+router.get("/Type", function(req, res) {
   var sql = "SELECT * FROM type;";
   client.query(sql, (err, result) => {
     if (err) console.log(err);
@@ -120,7 +116,7 @@ app.get("/Type", function(req, res) {
   // mysqlConnection.end();
 });
 
-app.get("/SubCat/:id", (req, res) => {
+router.get("/SubCat/:id", (req, res) => {
   client.query(
     "SELECT * FROM subcategory WHERE cat_id =" + req.params.id + ";",
     (err, rows, fields) => {
@@ -132,7 +128,7 @@ app.get("/SubCat/:id", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.get("/SububCat/:id", (req, res) => {
+router.get("/SububCat/:id", (req, res) => {
   client.query(
     "SELECT * FROM sububcategory WHERE sub_category_id =" + req.params.id + ";",
     (err, rows, fields) => {
@@ -144,7 +140,7 @@ app.get("/SububCat/:id", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.get("/Sububproduct/:id", (req, res) => {
+router.get("/Sububproduct/:id", (req, res) => {
   client.query(
     "SELECT * FROM products WHERE subub_category_id =" + req.params.id + ";",
     (err, rows, fields) => {
@@ -156,7 +152,7 @@ app.get("/Sububproduct/:id", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.get("/allSububproduct/:id", (req, res) => {
+router.get("/allSububproduct/:id", (req, res) => {
   client.query(
     "SELECT * FROM products WHERE subub_category_id =" + req.params.id + ";",
     (err, rows, fields) => {
@@ -168,7 +164,7 @@ app.get("/allSububproduct/:id", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.get("/subSubCat/:id", (req, res) => {
+router.get("/subSubCat/:id", (req, res) => {
   client.query(
     "SELECT * FROM sububcategory WHERE sub_category_id =" + req.params.id + ";",
     (err, rows, fields) => {
@@ -180,7 +176,7 @@ app.get("/subSubCat/:id", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.get("/SubCatpro/:id", (req, res) => {
+router.get("/SubCatpro/:id", (req, res) => {
   client.query(
     "SELECT * FROM products WHERE sub_category =" +
       req.params.id +
@@ -194,7 +190,7 @@ app.get("/SubCatpro/:id", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.get("/Sububpro/:id", (req, res) => {
+router.get("/Sububpro/:id", (req, res) => {
   client.query(
     "SELECT * FROM products WHERE sub_category =" +
       req.params.id +
@@ -208,7 +204,7 @@ app.get("/Sububpro/:id", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.post("/Products/", function(req, res) {
+router.post("/Products/", function(req, res) {
   var sql = "SELECT * FROM products ORDER BY id DESC;";
   client.query(sql, (err, result) => {
     if (err) console.log(err);
@@ -219,7 +215,7 @@ app.post("/Products/", function(req, res) {
   // mysqlConnection.end();
 });
 
-app.get("/product/:name", (req, res) => {
+router.get("/product/:name", (req, res) => {
   client.query(
     "SELECT * FROM products WHERE name LIKE '%" + [req.params.name] + "%';",
     (err, rows, fields) => {
@@ -231,7 +227,7 @@ app.get("/product/:name", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.get("/pro/:id", (req, res) => {
+router.get("/pro/:id", (req, res) => {
   client.query(
     "Delete FROM products WHERE id =" + req.params.id + ";",
     (err, rows, fields) => {
@@ -245,7 +241,7 @@ app.get("/pro/:id", (req, res) => {
 
 //
 
-app.get("/product_id/:id", (req, res) => {
+router.get("/product_id/:id", (req, res) => {
   client.query(
     "Select * FROM products WHERE id =" + req.params.id + ";",
     (err, rows, fields) => {
@@ -257,7 +253,7 @@ app.get("/product_id/:id", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.get("/pay/:email", (req, res) => {
+router.get("/pay/:email", (req, res) => {
   client.query(
     "SELECT * FROM custormers WHERE email ='" + req.params.email + "';",
     (err, rows, fields) => {
@@ -269,7 +265,7 @@ app.get("/pay/:email", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.get("/cat/:id", (req, res) => {
+router.get("/cat/:id", (req, res) => {
   client.query(
     "Delete FROM category WHERE id =" + req.params.id + ";",
     (err, rows, fields) => {
@@ -281,7 +277,7 @@ app.get("/cat/:id", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.get("/subcat/del/:id", (req, res) => {
+router.get("/subcat/del/:id", (req, res) => {
   client.query(
     "Delete FROM subcategory WHERE id =" + req.params.id + ";",
     (err, rows, fields) => {
@@ -292,7 +288,7 @@ app.get("/subcat/del/:id", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.get("/sububcat/del/:id", (req, res) => {
+router.get("/sububcat/del/:id", (req, res) => {
   client.query(
     "Delete FROM sububcategory WHERE id =" + req.params.id + ";",
     (err, rows, fields) => {
@@ -304,7 +300,7 @@ app.get("/sububcat/del/:id", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.get("/custom", (req, res) => {
+router.get("/custom", (req, res) => {
   client.query("SELECT * FROM custormers;", (err, rows, fields) => {
     if (!err) res.send(rows);
     else console.log(err);
@@ -312,18 +308,18 @@ app.get("/custom", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.get("/custom-count", (req, res) => {
-   client.query(
-    "SELECT COUNT(*) FROM custormers",
-    (err, rows, fields) => {
-      if (!err) res.send(rows);
-      else console.log(err);
-    }
-  );
-  // mysqlConnection.end();
-});
+// router.get("/custom-count", (req, res) => {
+//    client.query(
+//     "SELECT COUNT(*) FROM custormers",
+//     (err, rows, fields) => {
+//       if (!err) res.send(rows);
+//       else console.log(err);
+//     }
+//   );
+//   // mysqlConnection.end();
+// });
 
-app.get("/custom-count", (req, res) => {
+router.get("/custom-count", (req, res) => {
   client.query(
     "SELECT COUNT(*) as total FROM custormers;",
     (err, rows, fields) => {
@@ -335,7 +331,7 @@ app.get("/custom-count", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.get("/product-count", (req, res) => {
+router.get("/product-count", (req, res) => {
   client.query(
     "SELECT COUNT(*) as total FROM products;",
     (err, rows, fields) => {
@@ -347,7 +343,7 @@ app.get("/product-count", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.get("/cat-count", (req, res) => {
+router.get("/cat-count", (req, res) => {
   client.query(
     "SELECT COUNT(*) as total FROM category;",
     (err, rows, fields) => {
@@ -359,7 +355,7 @@ app.get("/cat-count", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.get("/catepro/:category", (req, res) => {
+router.get("/catepro/:category", (req, res) => {
   client.query(
     "SELECT * FROM products WHERE category = ?;",
     [req.params.category],
@@ -372,7 +368,7 @@ app.get("/catepro/:category", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.get("/subcategory", function(req, res) {
+router.get("/subcategory", function(req, res) {
   var sql = "SELECT * FROM subcategory;";
   client.query(sql, (err, result) => {
     if (err) console.log(err);
@@ -383,7 +379,7 @@ app.get("/subcategory", function(req, res) {
   // mysqlConnection.end();
 });
 
-app.get("/subsubcategory", function(req, res) {
+router.get("/subsubcategory", function(req, res) {
   var sql = "SELECT * FROM sububcategory;";
   client.query(sql, (err, result) => {
     if (err) console.log(err);
@@ -394,7 +390,7 @@ app.get("/subsubcategory", function(req, res) {
   // mysqlConnection.end();
 });
 
-app.post("/category", function(req, res) {
+router.post("/category", function(req, res) {
   var sql = "SELECT * FROM category ORDER BY id DESC;";
   client.query(sql, (err, result) => {
     if (err) console.log(err);
@@ -405,7 +401,7 @@ app.post("/category", function(req, res) {
   // mysqlConnection.end();
 });
 
-app.get("/category", function(req, res) {
+router.get("/category", function(req, res) {
   var sql = "SELECT * FROM category ORDER BY id DESC;";
   client.query(sql, (err, result) => {
     if (err) console.log(err);
@@ -416,7 +412,7 @@ app.get("/category", function(req, res) {
   // mysqlConnection.end();
 });
 
-app.get("/cat-admin-list/:id", (req, res) => {
+router.get("/cat-admin-list/:id", (req, res) => {
   client.query(
     "SELECT * FROM category WHERE id = ?;",
     [req.params.id],
@@ -429,7 +425,7 @@ app.get("/cat-admin-list/:id", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.get("/subsub-admin-list/:id", (req, res) => {
+router.get("/subsub-admin-list/:id", (req, res) => {
   client.query(
     "SELECT * FROM sububcategory WHERE id = ?;",
     [req.params.id],
@@ -442,7 +438,7 @@ app.get("/subsub-admin-list/:id", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.get("/subub-admin-list/:id", (req, res) => {
+router.get("/subub-admin-list/:id", (req, res) => {
   client.query(
     "SELECT * FROM subcategory WHERE id = ?;",
     [req.params.id],
@@ -455,7 +451,7 @@ app.get("/subub-admin-list/:id", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.get("/product/:id", (req, res) => {
+router.get("/product/:id", (req, res) => {
   client.query(
     "SELECT * FROM products WHERE id = ?;",
     [req.params.id],
@@ -468,7 +464,7 @@ app.get("/product/:id", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.post("/delivery", (req, res) => {
+router.post("/delivery", (req, res) => {
   let post = req.body;
 
   client.query(
@@ -527,32 +523,32 @@ app.post("/delivery", (req, res) => {
   );
 });
 
-app.delete("/product/:id", (req, res) => {
-   client.query(
-    "DELETE FROM product WHERE id = ?",
-    [req.params.id],
-    (err, rows, fields) => {
-      if (!err) res.send(" Patients Data Deleted successfully.");
-      else console.log(err);
-    }
-  );
-});
+// router.delete("/product/:id", (req, res) => {
+//    client.query(
+//     "DELETE FROM product WHERE id = ?",
+//     [req.params.id],
+//     (err, rows, fields) => {
+//       if (!err) res.send(" Patients Data Deleted successfully.");
+//       else console.log(err);
+//     }
+//   );
+// });
 
-app.post("/check", (req, res) => {
-  var sql =
-    "SELECT * FROM custormers where email =" +
-    req.email +
-    " and phone =" +
-    req.phone +
-    "";
-   client.query(sql, (err, rows, fields) => {
-    if (rows)
-      return res.status("405").json("User with email and phone already exist.");
-    console.log(err, req.email);
-  });
-});
+// router.post("/check", (req, res) => {
+//   var sql =
+//     "SELECT * FROM custormers where email =" +
+//     req.email +
+//     " and phone =" +
+//     req.phone +
+//     "";
+//    client.query(sql, (err, rows, fields) => {
+//     if (rows)
+//       return res.status("405").json("User with email and phone already exist.");
+//     console.log(err, req.email);
+//   });
+// });
 
-app.post("/check", (req, res) => {
+router.post("/check", (req, res) => {
   let post = req.body;
   // var sql =
   //   "SELECT count(*) as total FROM custormers where email='" +
@@ -608,14 +604,14 @@ var upload = multer({
   storage: storage
 });
 
-// app.post("/ins/product2",upload.array('img', 2), (req, res) => {
+// router.post("/ins/product2",upload.array('img', 2), (req, res) => {
 //   let files = req.files;
 //   res.send(files[0].originalname);
 //   var sql = 'UPDATE `products` SET `image_path` = 'jcjcj' WHERE `products`.`id` = 61';
-
+//
 // });
 
-app.post("/ins/product", upload.array("img", 2), (req, res) => {
+router.post("/ins/product", upload.array("img", 2), (req, res) => {
   let body = req.body;
   let files = req.files;
   // var upload = multer({dest: '../src/components/image/'});
@@ -651,7 +647,7 @@ app.post("/ins/product", upload.array("img", 2), (req, res) => {
   // mysqlConnection.end();
 });
 
-app.post("/ins/cate", (req, res) => {
+router.post("/ins/cate", (req, res) => {
   let body = req.body;
 
   var cg = "SELECT count(*) as tl from category;";
@@ -677,7 +673,7 @@ app.post("/ins/cate", (req, res) => {
   // mysqlConnection.end();
 });
 
-app.post("/ins/sub-sub-cate", (req, res) => {
+router.post("/ins/sub-sub-cate", (req, res) => {
   let body = req.body;
 
   var sql = "INSERT INTO sububcategory (name, sub_category_id) VALUES (?,?);";
@@ -689,7 +685,7 @@ app.post("/ins/sub-sub-cate", (req, res) => {
   // client.end();
 });
 
-app.post("/ins/sub-cate", (req, res) => {
+router.post("/ins/sub-cate", (req, res) => {
   let body = req.body;
 
   var sql = "INSERT INTO subcategory (sub_cat_name, cat_id) VALUES (?,?);";
@@ -701,11 +697,11 @@ app.post("/ins/sub-cate", (req, res) => {
   // client.end();
 });
 
-// Serve any static files
-app.use(express.static(path.join(__dirname, "../build/")));
+app.use(router)
+app.use(express.static(path.join(__dirname, "..build/")));
 
 // Handle React routing, return all requests to React app
-app.get("/*", function(req, res) {
+app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "../build/", "index.html"));
 });
 
